@@ -31,7 +31,7 @@ const AdminHome = () => {
         <button className="admin-button">Staff Management</button>
         <button className="admin-button">Pharmacy Management</button>
         <button className="admin-button">Equipment Handling</button>
-        <button className="admin-button">Healthy Food Coordinator</button>
+        <button className="admin-button" onClick={() => navigate('/FoodLogin')}>Healthy Food Coordinator</button>
       </div>
       </div>
     </div>

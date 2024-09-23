@@ -22,6 +22,11 @@ import AddDoctor from "./Components/AddDoctor/AddDoctor";
 import UpdateDoctor from "./Components/UpdateDoctor/UpdateDoctor";
 import DoctorLogin from "./Components/DoctorLogin/DoctorLogin";
 
+import Header from './Components/Payment/components/Header'; // Update path if necessary
+import AddPayment from './Components/Payment/components/AddPayment'; // Update path if necessary
+import AllPayment from './Components/Payment/components/AllPayment'; // Update path if necessary
+import UpdatePayment from './Components/Payment/components/UpdatePayment'; // Update path if necessary
+
 
 function App() {
 
@@ -49,6 +54,12 @@ function App() {
           <Route path="/addDoctor" element={<AddDoctor/>}></Route>
           <Route path="/doctorDetails" element={<DoctorDetails/>}></Route>
           <Route path="/doctorDetails/:id" element={<UpdateDoctor/>}></Route>
+
+          {/* Payment-related routes */}
+          <Route path="/addPayment" element={<AddPayment />} />
+          <Route path="/allPayment" element={<AllPayment />} />
+          <Route path="/allPayment/:id" element={<UpdatePayment />} />
+          {/* Define other routes as needed */}
 
 
 

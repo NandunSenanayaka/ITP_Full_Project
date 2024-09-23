@@ -18,7 +18,7 @@ const AdminHome = () => {
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           H O S P I T A L
         </div>
-        <button className="login-btnAd" onClick={() => navigate('/Header')}>Log Out</button>
+        <button className="login-btnAd" onClick={() => navigate('/')}>Home</button>
         </header>
       
       <h1 className="admin-title">Admin Dashboard</h1>

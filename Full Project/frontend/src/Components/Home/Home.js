@@ -23,7 +23,7 @@ const Home = () => {
           W E L L N E S S &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           A Y U R V E D A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           H O S P I T A L
-          <button className="login-btnAd" onClick={() => navigate('/Header')}>Log Out</button>
+          {/* <button className="login-btnAd" onClick={() => navigate('/Header')}>Log Out</button> */}
           </div>
       </header>
 

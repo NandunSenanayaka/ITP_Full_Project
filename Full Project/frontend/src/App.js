@@ -1,0 +1,66 @@
+import React from 'react';
+import { Route,Routes } from 'react-router-dom';
+import './App.css';
+import Home from './Components/Home/Home';
+import { Link } from 'react-router-dom'; // Remove this if not used
+
+import NurseLogin from "./Components/NurseLogin/NurseLogin";
+import AddNurse from './Components/AddNurse/AddNurse';
+import NurseDetails from './Components/NurseDetails/NurseDetails';
+import UpdateNurse from './Components/UpdateNurse/UpdateNurse';
+
+import ViewTreatment from "./Components/Treatment/ViewTreatment";
+import AddTreatment from "./Components/Treatment/AddTreatment";
+import UpdateTreatment from "./Components/UpdateTreatment/UpdateTreatment";
+import TreatmentPage from "./Components/TreatmentPage/TreatmentPage"; // Import your new TreatmentPage component
+import HomeNav from "./Components/HomeNav/HomeNav";
+import AdminHome from "./Components/AdminHome/AdminHome";
+import TreatmentLogin from "./Components/TreatmentLogin/TreatmentLogin";
+
+import DoctorDetails from "./Components/DoctorDetails/DoctorDetails";
+import AddDoctor from "./Components/AddDoctor/AddDoctor";
+import UpdateDoctor from "./Components/UpdateDoctor/UpdateDoctor";
+import DoctorLogin from "./Components/DoctorLogin/DoctorLogin";
+
+
+function App() {
+
+  return (
+    <div>
+
+      <React.Fragment>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/addappoinment' element={<AddNurse/>}/> 
+          <Route path='/appoinmentdetails' element={<NurseDetails/>}/> 
+          <Route path='/appoinmentdetails/:id' element={<UpdateNurse/>}/> 
+          <Route path="/NurseLogin" element={<NurseLogin />} /> {/* Route to NurseLoginLogin */}
+
+           {/* Treatment-related routes */}
+          <Route path="/addtreatment" element={<AddTreatment />} />
+          <Route path="/viewtreatment" element={<ViewTreatment />} />
+          <Route path="/AdminHome" element={<AdminHome />} />
+          <Route path="/viewtreatment/:_id" element={<UpdateTreatment />} />
+          <Route path="/treatmentpage" element={<TreatmentPage />} /> {/* Route to TreatmentPage */}
+          <Route path="/TreatmentLogin" element={<TreatmentLogin />} /> {/* Route to TreatmentLogin */}
+
+          {/* Doctor-related routes */}
+          <Route path="/DoctorLogin" element={<DoctorLogin/>}></Route>
+          <Route path="/addDoctor" element={<AddDoctor/>}></Route>
+          <Route path="/doctorDetails" element={<DoctorDetails/>}></Route>
+          <Route path="/doctorDetails/:id" element={<UpdateDoctor/>}></Route>
+
+
+
+
+
+        </Routes>
+
+      </React.Fragment>
+
+
+    </div>
+  );
+}
+
+export default App;

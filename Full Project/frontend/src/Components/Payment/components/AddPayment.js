@@ -10,7 +10,7 @@ function AddPayment() {
     cardNumber: "",
     date: "",
     cvc: "",
-    description: "", // Added description field
+    description: "", // Added description field ex1
   });
 
   const handleChange = (e) => {

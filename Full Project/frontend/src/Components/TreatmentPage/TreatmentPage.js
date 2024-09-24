@@ -72,7 +72,7 @@ const TreatmentPage = () => {
   return (
     
     <div className="homeTr-container">
-      {/* Header Section */}
+      {/* Header Section here*/}
       <header className="header">
         <img alt="Logo" className="logo-nav" src={Logo} />
         <div className="logo">

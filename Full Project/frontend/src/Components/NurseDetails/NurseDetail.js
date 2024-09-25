@@ -38,8 +38,8 @@ function NurseDetail({
       <table className="report-table">
         <tbody>
           <tr>
-            <th>ID:</th>
-            <td>{_id || "N/A"}</td>
+            {/* <th>ID:</th>
+            <td>{_id || "N/A"}</td> */}
           </tr>
           <tr>
             <th>Name:</th>

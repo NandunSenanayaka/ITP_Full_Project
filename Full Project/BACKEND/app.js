@@ -11,6 +11,7 @@ const cors = require("cors");
 const treatmentRouter = require("../BACKEND/Routes/treatments.js");
 const doctorsRouter=require("../BACKEND/Routes/DoctorRoute");
 const paymentRouter=require("../BACKEND/Routes/payment");
+const PatientRouter = require("../BACKEND/Routes/Patient");
 
 
 
@@ -21,6 +22,7 @@ app.use("/nurses",router);
 app.use("/treatments", treatmentRouter);
 app.use("/doctors",doctorsRouter);
 app.use("/payment", paymentRouter);
+app.use("/Patient", PatientRouter);
 
 
 

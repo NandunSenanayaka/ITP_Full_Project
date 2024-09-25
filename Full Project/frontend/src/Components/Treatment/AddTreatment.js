@@ -104,7 +104,9 @@ function AddTreatment() {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 H O S P I T A L</div>
                 {/* <button className="login-btnAd">Log Out</button> */}
-                <button className="login-btnAd" onClick={() => navigate('/adminhome')}>Log Out</button>
+
+                <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
+
 
             </header>
        {/* Home Header End */}

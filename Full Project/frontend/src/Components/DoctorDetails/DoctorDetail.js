@@ -30,8 +30,8 @@ function DoctorDetail(props) {
       <h1>Doctor Details</h1>
       <div className="doctor-detail-form">
         <div className="form-group">
-          <label>ID:</label>
-          <span>{_id}</span>
+          {/* <label>ID:</label>
+          <span>{_id}</span> */}
         </div>
         <div className="form-group">
           <label>Name:</label>

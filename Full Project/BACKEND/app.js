@@ -13,6 +13,8 @@ const doctorsRouter=require("../BACKEND/Routes/DoctorRoute");
 const paymentRouter=require("../BACKEND/Routes/payment");
 const PatientRouter = require("../BACKEND/Routes/Patient");
 
+
+
 //middleware
 app.use(express.json());
 app.use(cors());
@@ -21,6 +23,7 @@ app.use("/treatments", treatmentRouter);
 app.use("/doctors",doctorsRouter);
 app.use("/payment", paymentRouter);
 app.use("/Patient", PatientRouter);
+
 
 
 mongoose.connect("mongodb+srv://admin:admin123@cluster.ugqok.mongodb.net/")

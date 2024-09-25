@@ -30,7 +30,10 @@ function NurseDetail({
   };
 
   return (
+            
+            
     <div className="nurse-detail-report">
+      
       <h1 className="report-title">Appointment Details Report</h1>
       <table className="report-table">
         <tbody>

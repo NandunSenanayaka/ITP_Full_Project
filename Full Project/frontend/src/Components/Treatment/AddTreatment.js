@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { FaInstagram, FaLinkedin, FaYoutube, FaFacebook } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import './AddTreatment.css';
 import IMG1 from "../Assets/Test.png";
@@ -103,7 +104,9 @@ function AddTreatment() {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 H O S P I T A L</div>
                 {/* <button className="login-btnAd">Log Out</button> */}
+
                 <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
+
 
             </header>
        {/* Home Header End */}
@@ -162,6 +165,50 @@ function AddTreatment() {
                     </form>
                 </div>
             </div>
+
+            
+      {/* Footer Section */}
+      <footer className="footer">
+        <div className="footer-content">
+          <img alt="Logo" className="logo-footer" src={Logo} />
+          <div className="quick-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Treatments</a></li>
+              <li><a href="#">Foods</a></li>
+              <li><a href="#">Pharmacy</a></li>
+            </ul>
+          </div>
+          <div className="about">
+            <h4>About</h4>
+            <ul>
+              <li><a href="#">Find a Doctor</a></li>
+              <li><a href="#">Request an Appointment</a></li>
+              <li><a href="#">Find a Location</a></li>
+              <li><a href="#">Get an Opinion</a></li>
+            </ul>
+          </div>
+          <div className="support">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="#">Donate</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="logo-footer-Text">WELLNESS</div>
+        <div className="social-media">
+          <a href="#"><FaInstagram size={24} /></a>
+          <a href="#"><FaLinkedin size={24} /></a>
+          <a href="#"><FaYoutube size={24} /></a>
+          <a href="#"><FaFacebook size={24} /></a>
+        </div>
+      </footer>
+
+      <div className='copy-right'>
+        <p>© 2024. Designed by Sahan. All right reserved.</p>
+      </div>
         </div>
     );
 }

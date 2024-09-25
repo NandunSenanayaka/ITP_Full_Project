@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import IMG1 from "../Assets/Doctor 1.png";
 import IMG2 from "../Assets/Doctor 2.png";
 import Logo from "../Assets/HeroLogo.png";
+import HomeWelcome from "../Assets/HomeWelcome.png";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ const Home = () => {
         </ul>
       </nav>
 
-      {/* Home Section */}
+      
       <section className="home-section">
         <div className="home-content">
           <h1>We empower patients to achieve optimal health and well-being.</h1>
@@ -58,6 +60,39 @@ const Home = () => {
           <img className='Doc-2' src={IMG2} alt="Doctor 2" />
         </div>
       </section>
+      {/* <marquee behavior="scroll" direction="left">
+      W E L L N E S S &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          A Y U R V E D A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          H O S P I T A L &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</marquee> */}
+
+        {/* welcome Section */}
+        <div className="popup-wrapper">
+        <div className="image-container">
+          <img src={HomeWelcome} alt="Ayurvedic Treatment" className="welcome-image" />
+        </div>
+      <div className="popup-content">
+      
+        <div className="text-container">
+          <h1>WELCOME TO WELLNESS</h1>
+          <p>
+          Wellness Ayurveda Hospital in Kirindiwela, Sri Lanka, offers both indoor and outdoor 
+          treatments with a focus on Ayurvedic healing. Facing challenges in managing patient appointments,
+           equipment, and daily operations, the clinic strives to meet the growing demand for its services.
+          </p>
+          <p>
+          To enhance efficiency, we are developing a web-based system to streamline appointment scheduling,
+           manage equipment, track staff, and generate detailed reports. This solution will help the clinic
+            better serve regular patients, introduce new treatments, and improve overall operations.
+          </p>
+          <p>
+          Discover the ancient healing arts of Ayurveda and rejuvenate your mind, body, and soul at 
+          Wellness Ayurveda Hospital.
+          </p>
+        </div>
+      </div>
+      
+    </div>
 
       {/* Footer Section */}
       <footer className="footer">

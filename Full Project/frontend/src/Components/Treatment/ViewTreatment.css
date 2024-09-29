@@ -272,3 +272,34 @@ button:nth-of-type(2):hover {
     /*margin: 10px;*/
     font-size: 15px;
   }
+
+
+  /* Treatment Report */
+  .report-title {
+    visibility: hidden; /* Hide on screen */
+    margin-left: 180px;
+
+}
+
+  @media print {
+    .report-title {
+      visibility: visible; /* show on screen */
+  }
+    
+    .footer {
+        display: block; /* Ensure the footer is displayed */
+        position: relative; /* Adjust position as necessary */
+        bottom: 0; /* Keep it at the bottom */
+        width: 100%; /* Full width */
+        page-break-after: always; /* Prevents page break after footer */
+
+    }
+
+    #download-report, #add-button ,.viewtitle ,
+    .search-container ,#search-bar,#search-button,.login-btnAd,.actions,.update-button,.delete-button{
+        display: none; /* Hide buttons when printing */
+    }
+
+    
+  }
+ /* Treatment Report */

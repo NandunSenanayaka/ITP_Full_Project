@@ -30,13 +30,16 @@ function NurseDetail({
   };
 
   return (
+            
+            
     <div className="nurse-detail-report">
+      
       <h1 className="report-title">Appointment Details Report</h1>
       <table className="report-table">
         <tbody>
           <tr>
-            <th>ID:</th>
-            <td>{_id || "N/A"}</td>
+            {/* <th>ID:</th>
+            <td>{_id || "N/A"}</td> */}
           </tr>
           <tr>
             <th>Name:</th>

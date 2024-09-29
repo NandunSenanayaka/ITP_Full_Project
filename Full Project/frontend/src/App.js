@@ -27,6 +27,11 @@ import AddPayment from './Components/Payment/components/AddPayment'; // Update p
 import AllPayment from './Components/Payment/components/AllPayment'; // Update path if necessary
 import UpdatePayment from './Components/Payment/components/UpdatePayment'; // Update path if necessary
 
+import Patient from './Components/AddPatient/Patient';
+import Patientdetails from './Components/Patientdetails/Patientdetails';
+import UpdatePatient from './Components/UpdatePatient/UpdatePatient';
+import FoodLogin from "./Components/FoodLogin/FoodLogin";
+
 
 function App() {
 
@@ -60,6 +65,12 @@ function App() {
           <Route path="/allPayment" element={<AllPayment />} />
           <Route path="/allPayment/:id" element={<UpdatePayment />} />
           {/* Define other routes as needed */}
+
+          {/* Food-patient-related routes */}
+          <Route path="/FoodLogin" element={<FoodLogin />} />
+          <Route path="/addPatient" element={<Patient />} />
+          <Route path="/Patientdetails" element={<Patientdetails />} />
+          <Route path="/updatePatient/:id" element={<UpdatePatient />} />
 
 
 

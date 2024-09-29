@@ -10,7 +10,7 @@ function AddPayment() {
     firstName: "",
     lastName: "",
     cardNumber: "",
-    date: "",
+    date: "",   //ex
     cvc: "",
     description: "", // Added description field ex1(git)
   });

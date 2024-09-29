@@ -11,8 +11,8 @@ body {
 
 .patient-details-container {
   max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
+  margin: 0px auto;
+  padding: 0px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -72,6 +72,8 @@ h1 {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  padding: 20px;
+
 }
 
 .patient-details-table th,

@@ -58,7 +58,8 @@ body {
 
 .Section1 {
     border: 2px solid #00e1ff;
-    margin-left: 150px;
+    margin-left: 60px;
+    margin-right: 5px;
     display: flex;
     flex-direction: column;
     padding: 20px;

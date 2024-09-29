@@ -154,7 +154,7 @@ function ViewTreatment() {
                 </div>
             )}
             <button id="download-report" onClick={handlePrint}>Download Report</button>
-            <button onClick={() => navigate('/addtreatment')}>Add Treatment</button>
+            <button id="add-button" onClick={() => navigate('/addtreatment')}>Add Treatment</button>
 
             {/* Footer Section */}
       <footer className="footer">

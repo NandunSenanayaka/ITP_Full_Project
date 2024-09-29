@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import { FaInstagram, FaLinkedin, FaYoutube, FaFacebook } from 'react-icons/fa';
+import Logo from "../../Assets/HeroLogo.png"; // Import your logo
 
 function UpdatePayment() {
     const [formData, setFormData] = useState({
@@ -56,7 +58,16 @@ function UpdatePayment() {
     const maskedCvc = '***';
 
     return (
-        <div style={{ maxWidth: '600px', margin: 'auto', padding: '20px', border: '1px solid #ddd', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)', backgroundColor: '#f9f9f9' }}>
+        <div style={{ maxWidth: '100%', margin: 'auto', padding: '20px', border: '1px solid #ddd', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)', backgroundColor: '#f9f9f9' }}>
+            
+             {/* Home Header */}
+      <header className="headerT">
+        <img alt="" className="logo-nav" src={Logo} /> 
+        <div className="logo">W E L L N E S S &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A Y U R V E D A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; H O S P I T A L</div>
+        <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
+      </header>
+            {/* END Home Header */}
+
             <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Update Payment</h1>
             <form onSubmit={handleSubmit}>
                 <div style={{ marginBottom: '15px' }}>
@@ -133,6 +144,50 @@ function UpdatePayment() {
                     Approve
                 </button>
             </form>
+
+            {/* Footer Section */}
+      <footer className="footer">
+        <div className="footer-content">
+          <img alt="Logo" className="logo-footer" src={Logo} />
+          <div className="quick-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Treatments</a></li>
+              <li><a href="#">Foods</a></li>
+              <li><a href="#">Pharmacy</a></li>
+            </ul>
+          </div>
+          <div className="about">
+            <h4>About</h4>
+            <ul>
+              <li><a href="#">Find a Doctor</a></li>
+              <li><a href="#">Request an Appointment</a></li>
+              <li><a href="#">Find a Location</a></li>
+              <li><a href="#">Get an Opinion</a></li>
+            </ul>
+          </div>
+          <div className="support">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="#">Donate</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="logo-footer-Text">WELLNESS</div>
+        <div className="social-media">
+          <a href="#"><FaInstagram size={24} /></a>
+          <a href="#"><FaLinkedin size={24} /></a>
+          <a href="#"><FaYoutube size={24} /></a>
+          <a href="#"><FaFacebook size={24} /></a>
+        </div>
+      </footer>
+
+      <div className='copy-right'>
+        <p>© 2024. Designed by Sahan. All right reserved.</p>
+      </div>
+      {/* END Footer Section */}
         </div>
     );
 }

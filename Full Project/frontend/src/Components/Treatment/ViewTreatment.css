@@ -85,6 +85,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin-left: 10px;
     padding: 10px; /* Padding around the table */
 }
 
@@ -150,12 +151,27 @@ body {
     margin-top: 20px;
     margin-right: 10px;
     margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+#add-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #000000; /* Orange color */
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 #download-report:hover {
     background-color: #e65c00; /* Darker orange on hover */
     
 }
+
 
 button {
     padding: 10px 20px;

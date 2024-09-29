@@ -34,6 +34,7 @@ function ViewTreatment() {
 
     // Download function
     const ComponentsRef = useRef();
+
     const handlePrint = useReactToPrint({
         content: () => ComponentsRef.current,
         documentTitle: "Treatments Report",
@@ -72,7 +73,9 @@ function ViewTreatment() {
     };
 
     return (
+        
         <div className='home-back'>
+            
             {/* Home Header */}
             <header className="header">
                 <img alt="" className="logo-nav" src={Logo} /> 
@@ -80,12 +83,16 @@ function ViewTreatment() {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 A Y R V E D A
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                H O S P I T A L</div>
+                H O S P I T A L</div> 
                 <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
             </header>
        {/* Home Header End */}
-
-            <h1>View Treatments</h1>
+       
+        <div className='viewtreatments'>
+        <p>Date: {new Date().toLocaleDateString()}</p>&nbsp;
+        <p> {new Date().toLocaleTimeString()}</p>
+        <div className='viewtitle'> <h1>View Treatments</h1></div>
+        </div>
 
             {/* Search container */}
             <div className="search-container">

@@ -15,6 +15,18 @@ body {
     border-bottom: 1px solid #d1d1d1; /* Gray line between header and navigation */
   }
   
+  .viewtreatments {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    background-color: transparent; /* Transparent to show the gradient */
+  }
+
+  .viewtitle{
+   margin-left: 200px;
+
+  }
+
   .logo {
     font-size: 24px;
     text-align: center;

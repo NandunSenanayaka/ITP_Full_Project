@@ -69,6 +69,11 @@ const treatments = [
 const TreatmentPage = () => {
   const navigate = useNavigate();
 
+  const handlePayment = (doctorName) => {
+    // Navigate to PaymentPage with the doctor's name as state
+    navigate('/addPayment', { state: { doctorName } });
+  };
+
   return (
     
     <div className="homeTr-container">
@@ -108,6 +113,10 @@ const TreatmentPage = () => {
             <li>Specialty: {treatment.benifit}</li> {/* New benefit field */}
             <li>Minimum duration: {treatment.minDuration}</li>
             {/* Optionally include other fields if available */}
+            {/* Payment Button */}
+             <button className="payment-button" onClick={() => handlePayment(treatment.title)}>
+                  Pay Now
+                </button>
           </ul>
         </div>
       </div>

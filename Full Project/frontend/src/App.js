@@ -21,6 +21,7 @@ import DoctorDetails from "./Components/DoctorDetails/DoctorDetails";
 import AddDoctor from "./Components/AddDoctor/AddDoctor";
 import UpdateDoctor from "./Components/UpdateDoctor/UpdateDoctor";
 import DoctorLogin from "./Components/DoctorLogin/DoctorLogin";
+import FindDoctor from "./Components/FindDoctorPage/FindDoctor";
 
 import Header from './Components/Payment/components/Header'; // Update path if necessary
 import AddPayment from './Components/Payment/components/AddPayment'; // Update path if necessary
@@ -59,6 +60,7 @@ function App() {
           <Route path="/addDoctor" element={<AddDoctor/>}></Route>
           <Route path="/doctorDetails" element={<DoctorDetails/>}></Route>
           <Route path="/doctorDetails/:id" element={<UpdateDoctor/>}></Route>
+          <Route path="/DoctorPage" element={<FindDoctor />}/>
 
           {/* Payment-related routes */}
           <Route path="/addPayment" element={<AddPayment />} />

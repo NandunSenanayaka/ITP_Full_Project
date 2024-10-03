@@ -92,16 +92,6 @@ function Patient() {
       inputErrors.number = "Valid phone number is required";
     }
 
-    // Patient Condition validation
-    if (!formData.patientCondition) {
-      inputErrors.patientCondition = "Patient condition is required";
-    }
-
-    // Doctor's Notes validation
-    if (!formData.doctorsNotes) {
-      inputErrors.doctorsNotes = "Doctor's notes are required";
-    }
-
     return inputErrors;
   };
 
@@ -154,15 +144,22 @@ function Patient() {
     }
   };
 
+  // Restrict input for NIC and Phone Number to numeric characters only
+  const restrictNumericInput = (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+  };
+
+  // Restrict input for Name to alphabetic characters and spaces
+  const restrictAlphabeticInput = (e) => {
+    e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '');
+  };
+
   return (
     <div>
-       {/* Home Header */}
-       <header className="headerT">
+      <header className="headerT">
         <img alt="" className="logo-nav" src={Logo} /> 
         <div className="logo">W E L L N E S S &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A Y U R V E D A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; H O S P I T A L</div>
-        {/* <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button> */}
       </header>
-            {/* END Home Header */}
 
       <Nav />
       <div className="patient-form-container">
@@ -175,6 +172,7 @@ function Patient() {
               name="nic"
               value={formData.nic}
               onChange={handleChange}
+              onInput={restrictNumericInput}
               className={errors.nic ? 'input-error' : ''}
             />
             {errors.nic && <p className="error-text">{errors.nic}</p>}
@@ -187,6 +185,7 @@ function Patient() {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              onInput={restrictAlphabeticInput}
               className={errors.name ? 'input-error' : ''}
             />
             {errors.name && <p className="error-text">{errors.name}</p>}
@@ -274,85 +273,44 @@ function Patient() {
               name="number"
               value={formData.number}
               onChange={handleChange}
+              onInput={restrictNumericInput}
               className={errors.number ? 'input-error' : ''}
             />
             {errors.number && <p className="error-text">{errors.number}</p>}
           </div>
 
+          {/* Fields not needing validation */}
           <div className="form-group">
             <label>Patient Condition</label>
-            <input
-              type="text"
+            <textarea
               name="patientCondition"
               value={formData.patientCondition}
               onChange={handleChange}
-              className={errors.patientCondition ? 'input-error' : ''}
             />
-            {errors.patientCondition && <p className="error-text">{errors.patientCondition}</p>}
           </div>
 
           <div className="form-group">
             <label>Doctor's Notes</label>
-            <input
-              type="text"
+            <textarea
               name="doctorsNotes"
               value={formData.doctorsNotes}
               onChange={handleChange}
-              className={errors.doctorsNotes ? 'input-error' : ''}
             />
-            {errors.doctorsNotes && <p className="error-text">{errors.doctorsNotes}</p>}
           </div>
 
           <button type="submit" className="submit-btn">Add Patient</button>
         </form>
       </div>
-      <footer/>
-      {/* Footer Section */}
+
       <footer className="footer">
-        <div className="footer-content">
-          <img alt="Logo" className="logo-footer" src={Logo} />
-          <div className="quick-links">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Treatments</a></li>
-              <li><a href="#">Foods</a></li>
-              <li><a href="#">Pharmacy</a></li>
-            </ul>
-          </div>
-          <div className="about">
-            <h4>About</h4>
-            <ul>
-              <li><a href="#">Find a Doctor</a></li>
-              <li><a href="#">Request an Appointment</a></li>
-              <li><a href="#">Find a Location</a></li>
-              <li><a href="#">Get an Opinion</a></li>
-            </ul>
-          </div>
-          <div className="support">
-            <h4>Support</h4>
-            <ul>
-              <li><a href="#">Donate</a></li>
-              <li><a href="#">Contact Us</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="logo-footer-Text">WELLNESS</div>
-        <div className="social-media">
-          <a href="#"><FaInstagram size={24} /></a>
-          <a href="#"><FaLinkedin size={24} /></a>
-          <a href="#"><FaYoutube size={24} /></a>
-          <a href="#"><FaFacebook size={24} /></a>
+        <div className="social-media-links">
+          <FaInstagram className="social-icon" />
+          <FaLinkedin className="social-icon" />
+          <FaYoutube className="social-icon" />
+          <FaFacebook className="social-icon" />
         </div>
       </footer>
-
-      <div className='copy-right'>
-        <p>© 2024. Designed by Sahan. All right reserved.</p>
-      </div>
-      {/* END Footer Section */}
     </div>
-    
-
   );
 }
 

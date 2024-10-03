@@ -50,6 +50,18 @@ function UpdatePatient() {
         });
     };
 
+    const restrictNumericInput = (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    };
+
+    const restrictAlphabeticInput = (e) => {
+        e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '');
+    };
+
+    const restrictEmailInput = (e) => {
+        e.target.value = e.target.value.replace(/[^\w@.]/g, '');
+    };
+
     const validate = () => {
         let inputErrors = {};
 
@@ -179,6 +191,7 @@ function UpdatePatient() {
                         name="nic"
                         value={patient.nic}
                         onChange={handleChange}
+                        onInput={restrictNumericInput} // Restrict NIC input to numbers only
                         className={errors.nic ? 'input-error' : ''}
                     />
                     {errors.nic && <p className="error-text">{errors.nic}</p>}
@@ -190,6 +203,7 @@ function UpdatePatient() {
                         name="name"
                         value={patient.name}
                         onChange={handleChange}
+                        onInput={restrictAlphabeticInput} // Restrict Name input to alphabetic characters
                         className={errors.name ? 'input-error' : ''}
                     />
                     {errors.name && <p className="error-text">{errors.name}</p>}
@@ -201,6 +215,7 @@ function UpdatePatient() {
                         name="email"
                         value={patient.email}
                         onChange={handleChange}
+                        onInput={restrictEmailInput} // Restrict Email input to valid email characters
                         className={errors.email ? 'input-error' : ''}
                     />
                     {errors.email && <p className="error-text">{errors.email}</p>}
@@ -249,6 +264,7 @@ function UpdatePatient() {
                         name="height"
                         value={patient.height}
                         onChange={handleChange}
+                        onInput={restrictNumericInput} // Restrict height input to numbers only
                         className={errors.height ? 'input-error' : ''}
                     />
                     {errors.height && <p className="error-text">{errors.height}</p>}
@@ -260,6 +276,7 @@ function UpdatePatient() {
                         name="weight"
                         value={patient.weight}
                         onChange={handleChange}
+                        onInput={restrictNumericInput} // Restrict weight input to numbers only
                         className={errors.weight ? 'input-error' : ''}
                     />
                     {errors.weight && <p className="error-text">{errors.weight}</p>}
@@ -271,6 +288,7 @@ function UpdatePatient() {
                         name="number"
                         value={patient.number}
                         onChange={handleChange}
+                        onInput={restrictNumericInput} // Restrict phone number to numbers only
                         className={errors.number ? 'input-error' : ''}
                     />
                     {errors.number && <p className="error-text">{errors.number}</p>}
@@ -293,55 +311,11 @@ function UpdatePatient() {
                         value={patient.doctorsNotes}
                         onChange={handleChange}
                         className={errors.doctorsNotes ? 'input-error' : ''}
-                    ></textarea>
+                    />
                     {errors.doctorsNotes && <p className="error-text">{errors.doctorsNotes}</p>}
                 </div>
-                <button type="submit" className="submit-button">Update Patient</button>
+                <button type="submit">Update Patient</button>
             </form>
-
-             {/* Footer Section */}
-      <footer className="footer">
-        <div className="footer-content">
-          <img alt="Logo" className="logo-footer" src={Logo} />
-          <div className="quick-links">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Treatments</a></li>
-              <li><a href="#">Foods</a></li>
-              <li><a href="#">Pharmacy</a></li>
-            </ul>
-          </div>
-          <div className="about">
-            <h4>About</h4>
-            <ul>
-              <li><a href="#">Find a Doctor</a></li>
-              <li><a href="#">Request an Appointment</a></li>
-              <li><a href="#">Find a Location</a></li>
-              <li><a href="#">Get an Opinion</a></li>
-            </ul>
-          </div>
-          <div className="support">
-            <h4>Support</h4>
-            <ul>
-              <li><a href="#">Donate</a></li>
-              <li><a href="#">Contact Us</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="logo-footer-Text">WELLNESS</div>
-        <div className="social-media">
-          <a href="#"><FaInstagram size={24} /></a>
-          <a href="#"><FaLinkedin size={24} /></a>
-          <a href="#"><FaYoutube size={24} /></a>
-          <a href="#"><FaFacebook size={24} /></a>
-        </div>
-      </footer>
-
-      <div className='copy-right'>
-        <p>© 2024. Designed by Sahan. All right reserved.</p>
-      </div>
-      {/* END Footer Section */}
         </div>
     );
 }

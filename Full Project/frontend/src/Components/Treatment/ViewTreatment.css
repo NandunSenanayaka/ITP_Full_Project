@@ -16,15 +16,17 @@ body {
   }
   
   .viewtreatments {
+    width: 100%;
     display: flex;
     align-items: center;
     margin-left: 10px;
-    background-color: transparent; /* Transparent to show the gradient */
   }
 
-  .viewtitle{
-   margin-left: 200px;
-
+  .viewtitle {
+    width: 100%;                /* Full width to enable centering */
+    display: flex;               /* Flexbox for alignment */
+    justify-content: center;     /* Horizontally center the content */
+    align-items: center;      
   }
 
   .logo {

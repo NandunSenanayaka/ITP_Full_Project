@@ -296,7 +296,7 @@ function ViewTreatment() {
 
                 <div className='viewtreatments'>
                     <p>Date: {new Date().toLocaleDateString()}</p>&nbsp;
-                    <p>{new Date().toLocaleTimeString()}</p>
+                    <p>Time: {new Date().toLocaleTimeString()}</p>
                     <div className='viewtitle'><h1>View Treatments</h1></div>
                     <div className='viewreport'>
                      <h1 className="report-title">REPORT</h1></div>

@@ -1,10 +1,10 @@
+// all payments
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; 
-import { FaInstagram, FaLinkedin, FaYoutube, FaFacebook } from 'react-icons/fa';
 import { useReactToPrint } from "react-to-print";
-import Logo from "../../Assets/HeroLogo.png"; // Import your logo
+import './print.css'; 
 
 export default function AllPayment() {
     const [payments, setPayments] = useState([]);
@@ -12,10 +12,19 @@ export default function AllPayment() {
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
     const [noResults, setNoResults] = useState(false);
+    const [currentDateTime, setCurrentDateTime] = useState(new Date().toLocaleString());
     const navigate = useNavigate(); 
+    const ComponentsRef = useRef();
 
     useEffect(() => {
         fetchPayments();
+        
+        // Update date and time every second
+        const intervalId = setInterval(() => {
+            setCurrentDateTime(new Date().toLocaleString());
+        }, 1000);
+        
+        return () => clearInterval(intervalId); // Clean up interval on unmount
     }, []);
 
     useEffect(() => {
@@ -42,26 +51,21 @@ export default function AllPayment() {
     const handleDelete = async (id) => {
         if (window.confirm(`Are you sure you want to delete payment with ID: ${id}?`)) {
             try {
-                const response = await axios.delete(`http://localhost:5000/payment/delete/${id}`);
-                console.log('Delete response:', response.data); 
+                await axios.delete(`http://localhost:5000/payment/delete/${id}`);
                 alert(`Deleted payment with ID: ${id}`);
                 fetchPayments(); 
             } catch (err) {
-                console.error('Error deleting payment:', err.response ? err.response.data : err.message); 
                 alert(`Failed to delete payment: ${err.message}`);
             }
         }
     };
-    
-    // Print details
-    const ComponentsRef = useRef();
+
     const handlePrint = useReactToPrint({
         content: () => ComponentsRef.current,
         documentTitle: "Payment Report",
         onAfterPrint: () => alert("Payment Report Successfully Downloaded!"),
     });
 
-    // Search function
     const handleSearch = () => {
         if (searchQuery.trim() === "") {
             setFilteredPayments(payments);
@@ -81,50 +85,83 @@ export default function AllPayment() {
     };
 
     const maskCardNumber = (cardNumber) => {
-        if (cardNumber.length >= 16) {
-            return `**** **** **** ${cardNumber.slice(-4)}`;
-        }
-        return cardNumber;
+        return cardNumber.length >= 16 ? `**** **** **** ${cardNumber.slice(-4)}` : cardNumber;
     };
 
-    const maskCvc = (cvc) => {
-        return '***';
+    const maskCvc = () => '***';
+
+    // Styles
+    const pageStyle = {
+        padding: '40px',
+        backgroundColor: '#f8f9fa',
+        minHeight: '100vh',
+        fontFamily: "'Roboto', sans-serif",
+        borderRadius: '10px',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
     };
 
-    // Inline styles
-    const containerStyle = {
-        padding: '30px',
-        backgroundColor: '#f4f4f4',
-        borderRadius: '8px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        margin: '20px auto',
-        maxWidth: '1200px',
-        overflowX: 'auto'
+    const headerStyle = {
+        textAlign: 'center',
+        fontSize: '36px',
+        color: '#343a40',
+        marginBottom: '20px',
+        fontWeight: '700',
+        textTransform: 'uppercase',
+        paddingBottom: '10px'
     };
 
-    const tableStyle = {
-        width: '100%',
-        borderCollapse: 'collapse',
-        marginTop: '20px',
-        backgroundColor: '#fff',
-        borderRadius: '8px',
-        overflow: 'hidden',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
-    };
-
-    const thStyle = {
-        backgroundColor: '#007bff',
-        color: '#fff',
-        padding: '12px 15px',
-        textAlign: 'left',
+    const dateTimeStyle = {
+        textAlign: 'center',
         fontSize: '16px',
-        fontWeight: '600'
+        color: '#495057',
+        marginBottom: '20px',
+        fontStyle: 'italic'
     };
 
-    const tdStyle = {
-        padding: '12px 15px',
-        borderBottom: '1px solid #ddd',
-        fontSize: '14px'
+    const hospitalDetailsStyle = {
+        textAlign: 'center',
+        fontSize: '18px',
+        color: '#343a40',
+        marginBottom: '20px',
+        fontWeight: '600',
+        lineHeight: '1.5',
+        borderBottom: '2px solid #007bff',
+        paddingBottom: '10px'
+    };
+
+    const billContainerStyle = {
+        padding: '20px',
+        backgroundColor: '#fff',
+        borderRadius: '12px',
+        boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+        margin: '20px auto',
+        maxWidth: '900px',
+        border: '1px solid #dee2e6',
+        position: 'relative',
+    };
+
+    const billItemStyle = {
+        marginBottom: '15px',
+        padding: '15px',
+        border: '1px solid #ced4da',
+        borderRadius: '8px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#f8f9fa'
+    };
+
+    const billLabelStyle = {
+        fontWeight: '600',
+        color: '#495057',
+        flex: '0 0 180px'
+    };
+
+    const billValueStyle = {
+        flex: '1',
+        color: '#212529',
+        textAlign: 'right',
+        fontWeight: '500'
     };
 
     const buttonStyle = {
@@ -133,191 +170,126 @@ export default function AllPayment() {
         cursor: 'pointer',
         fontSize: '16px',
         padding: '5px 10px',
-        transition: 'background-color 0.3s, transform 0.3s'
+        marginLeft: '10px',
+        transition: 'transform 0.3s',
+        color: '#007bff'
     };
 
-    const editButtonStyle = {
-        ...buttonStyle,
-        color: '#007bff',
-        '&:hover': {
-            backgroundColor: '#e6f0ff',
-            transform: 'scale(1.05)'
-        }
+    const searchContainerStyle = {
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center',
+        marginBottom: '20px'
     };
 
-    const deleteButtonStyle = {
-        ...buttonStyle,
-        color: '#dc3545',
-        '&:hover': {
-            backgroundColor: '#f8d7da',
-            transform: 'scale(1.05)'
-        }
+    const searchBarStyle = {
+        padding: '12px',
+        width: '70%',
+        boxSizing: 'border-box',
+        borderRadius: '5px',
+        border: '1px solid #ced4da',
+        fontSize: '16px',
     };
 
     const downloadButtonStyle = {
-        backgroundColor: '#28a745',  
+        backgroundColor: '#007bff',  
         color: '#fff',  
         border: 'none', 
-        padding: '10px 20px', 
+        padding: '12px 25px', 
         fontSize: '16px', 
         borderRadius: '8px',  
         cursor: 'pointer',  
         transition: 'background-color 0.3s, transform 0.3s', 
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', 
-        marginTop: '20px'  
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
     };
 
     const hoverEffect = {
         '&:hover': {
-            backgroundColor: '#218838', 
+            backgroundColor: '#0056b3', 
             transform: 'scale(1.05)',  
         }
     };
 
-    const clearButtonStyle = {
-        backgroundColor: '#f0f0f0',
-        color: '#333',
-        border: '1px solid #ccc',
-        padding: '5px 10px',
-        fontSize: '12px',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        marginLeft: '10px',
-        transition: 'background-color 0.3s',
-    };
-
-    const clearButtonHoverEffect = {
-        '&:hover': {
-            backgroundColor: '#e0e0e0',
-        }
-    };
-
     return (
-        
-        <div style={containerStyle}>
-             {/* Home Header */}
-      <header className="headerT">
-        <img alt="" className="logo-nav" src={Logo} /> 
-        <div className="logo">W E L L N E S S &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A Y U R V E D A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; H O S P I T A L</div>
-        <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
-      </header>
-            {/* END Home Header */}
-            <h1 style={{ marginBottom: '20px', fontSize: '24px', fontWeight: '700', color: '#333' }}>All Payments Details</h1>
-            
-            <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
+        <div style={pageStyle}>
+            <h1 style={headerStyle}>Payment Details</h1>
+
+            <div style={searchContainerStyle}>
                 <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search Details..."
-                    style={{ padding: '10px', width: '100%', boxSizing: 'border-box' }}
+                    placeholder="Search Payment..."
+                    style={searchBarStyle}
                 />
-                {searchQuery && (
-                    <button 
-                        onClick={() => {
-                            setSearchQuery(""); 
-                            setFilteredPayments(payments); 
-                            setNoResults(false);
-                        }}
-                        style={{ ...clearButtonStyle, ...clearButtonHoverEffect }}
-                    >
-                        Clear
-                    </button>
-                )}
+
+                <button 
+                    onClick={handlePrint} 
+                    style={{ ...downloadButtonStyle, ...hoverEffect }}
+                >
+                    Download Report
+                </button>
             </div>
 
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <table ref={ComponentsRef} style={tableStyle}>
-                    <thead>
-                        <tr>
-                            <th style={thStyle}>User Name</th>
-                            <th style={thStyle}>Method Type</th>
-                            <th style={thStyle}>Card Number</th>
-                            <th style={thStyle}>Date</th>
-                            <th style={thStyle}>CVC</th>
-                            <th style={thStyle}>Description</th>
-                            <th style={thStyle}>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredPayments.length === 0 && noResults && (
-                            <tr>
-                                <td colSpan="7" style={{ textAlign: 'center', padding: '20px' }}>No results found</td>
-                            </tr>
-                        )}
+                filteredPayments.length === 0 && noResults ? (
+                    <p>No results found</p>
+                ) : (
+                    <div ref={ComponentsRef}>
+                        {/* Hospital Details - Visible in PDF */}
+                        <div style={hospitalDetailsStyle}>
+                            <p>WELLNESS AYURVEDA HOSPITAL</p>
+                            <p>56/A Weliweriya Road, Kirindiwela</p>
+                            <p>Phone: 0777513155</p>
+                        </div>
+
+                        {/* Current Date and Time for Printed Report */}
+                        <div style={dateTimeStyle}>
+                            <p>{currentDateTime}</p>
+                        </div>
+
                         {filteredPayments.map((payment, index) => (
-                            <tr key={index}>
-                                <td style={tdStyle}>{payment.UserName}</td>
-                                <td style={tdStyle}>{payment.methodType}</td>
-                                <td style={tdStyle}>{maskCardNumber(payment.cardNumber)}</td>
-                                <td style={tdStyle}>{payment.date}</td>
-                                <td style={tdStyle}>{maskCvc(payment.cvc)}</td>
-                                <td style={tdStyle}>{payment.description || 'N/A'}</td>
-                                <td style={tdStyle}>
-                                    <button onClick={() => handleEdit(payment._id)} style={editButtonStyle}>
-                                        <FaEdit />
+                            <div key={index} style={billContainerStyle}>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>User Name:</div>
+                                    <div style={billValueStyle}>{payment.UserName}</div>
+                                </div>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>Method Type:</div>
+                                    <div style={billValueStyle}>{payment.methodType}</div>
+                                </div>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>Card Number:</div>
+                                    <div style={billValueStyle}>{maskCardNumber(payment.cardNumber)}</div>
+                                </div>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>Date:</div>
+                                    <div style={billValueStyle}>{payment.date}</div>
+                                </div>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>CVC:</div>
+                                    <div style={billValueStyle}>{maskCvc()}</div>
+                                </div>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>Description:</div>
+                                    <div style={billValueStyle}>{payment.description || 'N/A'}</div>
+                                </div>
+                                {/* Edit and Delete Buttons - Visible only on page */}
+                                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+                                    <button style={buttonStyle} onClick={() => handleEdit(payment._id)}>
+                                        <FaEdit /> Edit
                                     </button>
-                                    <button onClick={() => handleDelete(payment._id)} style={deleteButtonStyle}>
-                                        <FaTrashAlt />
+                                    <button style={buttonStyle} onClick={() => handleDelete(payment._id)}>
+                                        <FaTrashAlt /> Delete
                                     </button>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         ))}
-                    </tbody>
-                </table>
+                    </div>
+                )
             )}
-            <button 
-                onClick={handlePrint} 
-                style={{ ...downloadButtonStyle, ...hoverEffect }}
-            >
-                Download Report
-            </button>
-
-            {/* Footer Section */}
-      <footer className="footer">
-        <div className="footer-content">
-          <img alt="Logo" className="logo-footer" src={Logo} />
-          <div className="quick-links">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Treatments</a></li>
-              <li><a href="#">Foods</a></li>
-              <li><a href="#">Pharmacy</a></li>
-            </ul>
-          </div>
-          <div className="about">
-            <h4>About</h4>
-            <ul>
-              <li><a href="#">Find a Doctor</a></li>
-              <li><a href="#">Request an Appointment</a></li>
-              <li><a href="#">Find a Location</a></li>
-              <li><a href="#">Get an Opinion</a></li>
-            </ul>
-          </div>
-          <div className="support">
-            <h4>Support</h4>
-            <ul>
-              <li><a href="#">Donate</a></li>
-              <li><a href="#">Contact Us</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="logo-footer-Text">WELLNESS</div>
-        <div className="social-media">
-          <a href="#"><FaInstagram size={24} /></a>
-          <a href="#"><FaLinkedin size={24} /></a>
-          <a href="#"><FaYoutube size={24} /></a>
-          <a href="#"><FaFacebook size={24} /></a>
-        </div>
-      </footer>
-
-      <div className='copy-right'>
-        <p>© 2024. Designed by Sahan. All right reserved.</p>
-      </div>
-      {/* END Footer Section */}
         </div>
     );
 }

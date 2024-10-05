@@ -98,3 +98,11 @@ body {
 .download-btn:hover {
   background-color: #218838;
 }
+
+
+@media print {
+  .search-section, .login-btnAd,.nurse-nav {
+    display: none;
+  }
+ 
+}

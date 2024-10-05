@@ -4,7 +4,6 @@ import Logo from "../../Assets/HeroLogo.png";
 import { FaInstagram, FaLinkedin, FaYoutube, FaFacebook } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-
 function AddPayment() {
 
   const [formData, setFormData] = useState({
@@ -92,6 +91,17 @@ function AddPayment() {
       .post("http://localhost:5000/payment/add", formData)
       .then(() => {
         alert("Payment Added");
+        // Clear the form
+        setFormData({
+          UserName: "",
+          methodType: "",
+          firstName: "",
+          lastName: "",
+          cardNumber: "",
+          date: "",
+          cvc: "",
+          description: "", // Clear description field
+        });
       })
       .catch((err) => {
         alert("Error: " + err.message);
@@ -102,10 +112,8 @@ function AddPayment() {
 
   const navigate = useNavigate();
 
-
   return (
     <div className="container">
-
       {/* Home Header */}
       <header className="header">
         <img alt="" className="logo-nav" src={Logo} />
@@ -117,7 +125,7 @@ function AddPayment() {
           H O S P I T A L
         </div>
         <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
-        </header>
+      </header>
       {/* END Home Header */}
 
       <h2
@@ -263,37 +271,15 @@ function AddPayment() {
               <li><a href="#">Pharmacy</a></li>
             </ul>
           </div>
-          <div className="about">
-            <h4>About</h4>
-            <ul>
-              <li><a href="#">Find a Doctor</a></li>
-              <li><a href="#">Request an Appointment</a></li>
-              <li><a href="#">Find a Location</a></li>
-              <li><a href="#">Get an Opinion</a></li>
-            </ul>
+          <div className="social-media">
+            <h4>Follow Us</h4>
+            <a href="#"><FaFacebook /></a>
+            <a href="#"><FaInstagram /></a>
+            <a href="#"><FaLinkedin /></a>
+            <a href="#"><FaYoutube /></a>
           </div>
-          <div className="support">
-            <h4>Support</h4>
-            <ul>
-              <li><a href="#">Donate</a></li>
-              <li><a href="#">Contact Us</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="logo-footer-Text">WELLNESS</div>
-        <div className="social-media">
-          <a href="#"><FaInstagram size={24} /></a>
-          <a href="#"><FaLinkedin size={24} /></a>
-          <a href="#"><FaYoutube size={24} /></a>
-          <a href="#"><FaFacebook size={24} /></a>
         </div>
       </footer>
-
-      <div className='copy-right'>
-        <p>© 2024. Designed by Sahan. All right reserved.</p>
-      </div>
-      {/* END Footer Section */}
-      
     </div>
   );
 }

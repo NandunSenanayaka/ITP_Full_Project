@@ -213,3 +213,35 @@ button:hover {
   /*margin: 10px;*/
   font-size: 15px;
 }
+
+
+
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .search-form,
+  .footer,
+  .copy-right {
+    display: block; /* Ensure they are visible in the print */
+  }
+
+  .doctor-list {
+    page-break-before: auto;
+    page-break-after: auto;
+  }
+
+  /* Adjust other styles as needed */
+  .search-form, .btn-update,.print-button,.nav-component{
+    display: none;
+  }
+}

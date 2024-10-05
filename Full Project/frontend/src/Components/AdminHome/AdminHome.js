@@ -21,9 +21,9 @@ const AdminHome = () => {
         </div>
 
         <button className="login-btnAd" onClick={() => navigate('/')}>Home</button>
-
         </header>
-      
+      {/* END Home Header */}
+
       <h1 className="admin-title">Admin Dashboard</h1>
       <div className="admin-center1">
       <div className="admin-buttons-container">
@@ -80,6 +80,8 @@ const AdminHome = () => {
       <div className='copy-right'>
         <p>© 2024. Designed by Sahan. All right reserved.</p>
       </div>
+            {/* END Footer Section */}
+
     </div>
   );
 };

@@ -257,7 +257,6 @@ function AddPayment() {
 
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
-
       {/* Footer Section */}
       <footer className="footer">
         <div className="footer-content">
@@ -271,15 +270,36 @@ function AddPayment() {
               <li><a href="#">Pharmacy</a></li>
             </ul>
           </div>
-          <div className="social-media">
-            <h4>Follow Us</h4>
-            <a href="#"><FaFacebook /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaLinkedin /></a>
-            <a href="#"><FaYoutube /></a>
+          <div className="about">
+            <h4>About</h4>
+            <ul>
+              <li><a href="#">Find a Doctor</a></li>
+              <li><a href="#">Request an Appointment</a></li>
+              <li><a href="#">Find a Location</a></li>
+              <li><a href="#">Get an Opinion</a></li>
+            </ul>
+          </div>
+          <div className="support">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="#">Donate</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
           </div>
         </div>
+        <div className="logo-footer-Text">WELLNESS</div>
+        <div className="social-media">
+          <a href="#"><FaInstagram size={24} /></a>
+          <a href="#"><FaLinkedin size={24} /></a>
+          <a href="#"><FaYoutube size={24} /></a>
+          <a href="#"><FaFacebook size={24} /></a>
+        </div>
       </footer>
+
+      <div className='copy-right'>
+        <p>© 2024. Designed by Susara. All right reserved.</p>
+      </div>
+      {/* END Footer Section */}
     </div>
   );
 }

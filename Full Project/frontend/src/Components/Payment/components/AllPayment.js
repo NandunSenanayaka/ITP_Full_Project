@@ -1,11 +1,13 @@
+// all payments
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 import { useReactToPrint } from "react-to-print";
-import './print.css';
+import './print.css'; 
 import Logo from "../../Assets/HeroLogo.png";
 import { FaInstagram, FaLinkedin, FaYoutube, FaFacebook } from 'react-icons/fa';
+
 
 export default function AllPayment() {
     const [payments, setPayments] = useState([]);
@@ -14,15 +16,18 @@ export default function AllPayment() {
     const [searchQuery, setSearchQuery] = useState("");
     const [noResults, setNoResults] = useState(false);
     const [currentDateTime, setCurrentDateTime] = useState(new Date().toLocaleString());
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
     const ComponentsRef = useRef();
 
     useEffect(() => {
         fetchPayments();
+        
+        // Update date and time every second
         const intervalId = setInterval(() => {
             setCurrentDateTime(new Date().toLocaleString());
         }, 1000);
-        return () => clearInterval(intervalId);
+        
+        return () => clearInterval(intervalId); // Clean up interval on unmount
     }, []);
 
     useEffect(() => {
@@ -43,7 +48,7 @@ export default function AllPayment() {
     };
 
     const handleEdit = (id) => {
-        navigate(`/allPayment/${id}`);
+        navigate(`/allPayment/${id}`); 
     };
 
     const handleDelete = async (id) => {
@@ -51,7 +56,7 @@ export default function AllPayment() {
             try {
                 await axios.delete(`http://localhost:5000/payment/delete/${id}`);
                 alert(`Deleted payment with ID: ${id}`);
-                fetchPayments();
+                fetchPayments(); 
             } catch (err) {
                 alert(`Failed to delete payment: ${err.message}`);
             }
@@ -72,7 +77,7 @@ export default function AllPayment() {
         }
 
         const lowercasedQuery = searchQuery.toLowerCase();
-        const filtered = payments.filter(payment =>
+        const filtered = payments.filter(payment => 
             Object.values(payment).some(value =>
                 value.toString().toLowerCase().includes(lowercasedQuery)
             )
@@ -88,9 +93,10 @@ export default function AllPayment() {
 
     const maskCvc = () => '***';
 
+    // Styles
     const pageStyle = {
         padding: '40px',
-        backgroundImage: 'url("../Assets/MHome.jpg")',
+        backgroundImage: 'url("../Assets/MHome.jpg")', 
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         minHeight: '100vh',
@@ -98,6 +104,7 @@ export default function AllPayment() {
         borderRadius: '10px',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
     };
+    
 
     const headerStyle = {
         textAlign: 'center',
@@ -175,8 +182,8 @@ export default function AllPayment() {
     };
 
     const searchContainerStyle = {
-        display: 'flex',
-        justifyContent: 'space-between',
+        display: 'flex', 
+        justifyContent: 'space-between', 
         alignItems: 'center',
         marginBottom: '20px'
     };
@@ -191,128 +198,167 @@ export default function AllPayment() {
     };
 
     const downloadButtonStyle = {
-        backgroundColor: '#007bff',
-        color: '#fff',
-        border: 'none',
-        padding: '12px 25px',
-        fontSize: '16px',
-        borderRadius: '8px',
-        cursor: 'pointer',
-        transition: 'background-color 0.3s, transform 0.3s',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+        backgroundColor: '#007bff',  
+        color: '#fff',  
+        border: 'none', 
+        padding: '12px 25px', 
+        fontSize: '16px', 
+        borderRadius: '8px',  
+        cursor: 'pointer',  
+        transition: 'background-color 0.3s, transform 0.3s', 
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
     };
 
     const hoverEffect = {
         '&:hover': {
-            backgroundColor: '#0056b3',
-            transform: 'scale(1.05)',
+            backgroundColor: '#0056b3', 
+            transform: 'scale(1.05)',  
         }
-    };
-
-    const footerStyle = {
-        textAlign: 'center',
-        fontSize: '14px',
-        color: '#495057',
-        marginTop: '20px',
-        borderTop: '1px solid #dee2e6',
-        paddingTop: '10px'
     };
 
     return (
         <div className='allpayment-home'>
-            <div style={pageStyle}>
-                <h1 style={headerStyle}>Payment Details</h1>
 
-                <div style={searchContainerStyle}>
-                    <input
-                        type="text"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search Payment..."
-                        style={searchBarStyle}
-                    />
-                    <button
-                        onClick={handlePrint}
-                        style={{ ...downloadButtonStyle, ...hoverEffect }}
-                    >
-                        Download Report
-                    </button>
-                </div>
+            {/* Home Header */}
+            {/* <header className="header">
+                    <img alt="" className="logo-nav" src={Logo} />
+                    <div className="logo">W E L L N E S S
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    A Y R V E D A
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    H O S P I T A L</div>
+                    <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
+                </header> */}
+                {/* Home Header End */}
 
-                {loading ? (
-                    <p>Loading...</p>
-                ) : (
-                    filteredPayments.length === 0 && noResults ? (
-                        <p>No results found</p>
-                    ) : (
-                        <div ref={ComponentsRef}>
-                            <div style={hospitalDetailsStyle}>
-                                <p>WELLNESS AYURVEDA HOSPITAL</p>
-                                <p>56/A Weliweriya Road, Kirindiwela</p>
-                                <p>Phone: 0777513155</p>
-                            </div>
+        <div style={pageStyle}>
+            
+            <h1 style={headerStyle}>Payment Details</h1>
 
-                            <div style={dateTimeStyle}>
-                                <p>{currentDateTime}</p>
-                            </div>
+            <div style={searchContainerStyle}>
+                <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search Payment..."
+                    style={searchBarStyle}
+                />
 
-                            {filteredPayments.map((payment, index) => (
-                                <div key={index} style={billContainerStyle}>
-                                    <div style={billItemStyle}>
-                                        <div style={billLabelStyle}>User Name:</div>
-                                        <div style={billValueStyle}>{payment.UserName}</div>
-                                    </div>
-                                    <div style={billItemStyle}>
-                                        <div style={billLabelStyle}>Method Type:</div>
-                                        <div style={billValueStyle}>{payment.methodType}</div>
-                                    </div>
-                                    <div style={billItemStyle}>
-                                        <div style={billLabelStyle}>Card Number:</div>
-                                        <div style={billValueStyle}>{maskCardNumber(payment.cardNumber)}</div>
-                                    </div>
-                                    <div style={billItemStyle}>
-                                        <div style={billLabelStyle}>Date:</div>
-                                        <div style={billValueStyle}>{payment.expDate}</div>
-                                    </div>
-                                    <div style={billItemStyle}>
-                                        <div style={billLabelStyle}>CVC:</div>
-                                        <div style={billValueStyle}>{maskCvc()}</div>
-                                    </div>
-                                    <div style={billItemStyle}>
-                                        <div style={billLabelStyle}>Description:</div>
-                                        <div style={billValueStyle}>{payment.description}</div>
-                                    </div>
-                                    <div style={billItemStyle}>
-                                        <button
-                                            style={buttonStyle}
-                                            onClick={() => handleEdit(payment._id)}
-                                        >
-                                            <FaEdit />
-                                        </button>
-                                        <button
-                                            style={buttonStyle}
-                                            onClick={() => handleDelete(payment._id)}
-                                        >
-                                            <FaTrashAlt />
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-
-                            <div style={footerStyle}>
-                                <p>Follow us on social media:</p>
-                                <div>
-                                    <FaFacebook style={{ marginRight: '10px' }} />
-                                    <FaInstagram style={{ marginRight: '10px' }} />
-                                    <FaLinkedin style={{ marginRight: '10px' }} />
-                                    <FaYoutube />
-                                </div>
-                                <p>© {new Date().getFullYear()} WELLNESS AYURVEDA HOSPITAL. All rights reserved.</p>
-                            </div>
-                        </div>
-                    )
-                )}
+                <button 
+                    onClick={handlePrint} 
+                    style={{ ...downloadButtonStyle, ...hoverEffect }}
+                >
+                    Download Report
+                </button>
             </div>
+
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                filteredPayments.length === 0 && noResults ? (
+                    <p>No results found</p>
+                ) : (
+                    
+                    <div ref={ComponentsRef}>
+                       
+                        {/* Hospital Details - Visible in PDF */}
+                        <div style={hospitalDetailsStyle}>
+                            <p>WELLNESS AYURVEDA HOSPITAL</p>
+                            <p>56/A Weliweriya Road, Kirindiwela</p>
+                            <p>Phone: 0777513155</p>
+                        </div>
+
+                        {/* Current Date and Time for Printed Report */}
+                        <div style={dateTimeStyle}>
+                            <p>{currentDateTime}</p>
+                        </div>
+
+                        {filteredPayments.map((payment, index) => (
+                            <div key={index} style={billContainerStyle}>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>User Name:</div>
+                                    <div style={billValueStyle}>{payment.UserName}</div>
+                                </div>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>Method Type:</div>
+                                    <div style={billValueStyle}>{payment.methodType}</div>
+                                </div>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>Card Number:</div>
+                                    <div style={billValueStyle}>{maskCardNumber(payment.cardNumber)}</div>
+                                </div>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>Date:</div>
+                                    <div style={billValueStyle}>{payment.date}</div>
+                                </div>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>CVC:</div>
+                                    <div style={billValueStyle}>{maskCvc()}</div>
+                                </div>
+                                <div style={billItemStyle}>
+                                    <div style={billLabelStyle}>Description:</div>
+                                    <div style={billValueStyle}>{payment.description || 'N/A'}</div>
+                                </div>
+                                {/* Edit and Delete Buttons - Visible only on page */}
+                                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+                                    <button style={buttonStyle} onClick={() => handleEdit(payment._id)}>
+                                        <FaEdit /> Edit
+                                    </button>
+                                    <button style={buttonStyle} onClick={() => handleDelete(payment._id)}>
+                                        <FaTrashAlt /> Delete
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )
+            )}
+
+            {/* Footer Section */}
+            <footer className="footer">
+                    <div className="footer-content">
+                        <img alt="Logo" className="logo-footer" src={Logo} />
+                        <div className="quick-links">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Treatments</a></li>
+                                <li><a href="#">Foods</a></li>
+                                <li><a href="#">Pharmacy</a></li>
+                            </ul>
+                        </div>
+                        <div className="about">
+                            <h4>About</h4>
+                            <ul>
+                                <li><a href="#">Find a Doctor</a></li>
+                                <li><a href="#">Request an Appointment</a></li>
+                                <li><a href="#">Find a Location</a></li>
+                                <li><a href="#">Get an Opinion</a></li>
+                            </ul>
+                        </div>
+                        <div className="support">
+                            <h4>Support</h4>
+                            <ul>
+                                <li><a href="#">Donate</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="logo-footer-Text">WELLNESS</div>
+                    <div className="social-media">
+                        <a href="#"><FaInstagram size={24} /></a>
+                        <a href="#"><FaLinkedin size={24} /></a>
+                        <a href="#"><FaYoutube size={24} /></a>
+                        <a href="#"><FaFacebook size={24} /></a>
+                    </div>
+                </footer>
+            </div> 
+            <div className='copy-right'>
+                <p>© 2024. Designed by Sahan. All rights reserved.</p>
+            </div>
+             {/* Footer Section End */}
         </div>
+        
+        
     );
 }

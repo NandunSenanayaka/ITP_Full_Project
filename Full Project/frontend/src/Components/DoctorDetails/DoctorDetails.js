@@ -149,6 +149,7 @@ import Logo from "../Assets/HeroLogo.png"; // Import your logo
 import DoctorDetail from "../DoctorDetails/DoctorDetail"; // Import the correct component
 import { useReactToPrint } from "react-to-print";
 import "./DoctorDetails.css";
+import { useNavigate } from 'react-router-dom';
 
 const URL = "http://localhost:5000/doctors"; // Ensure the URL is correct
 
@@ -157,6 +158,8 @@ const fetchHandler = async () => {
 }
 
 function DoctorDetails() {
+  const navigate = useNavigate();
+
   const [doctors, setDoctors] = useState([]);
   const [SearchQuery, setSearchQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
@@ -166,6 +169,7 @@ function DoctorDetails() {
   }, []);
 
   // PDF download function start
+
   const ComponentsRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => ComponentsRef.current,
@@ -197,6 +201,8 @@ function DoctorDetails() {
           W E L L N E S S &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A Y U R V E D A
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; H O S P I T A L
         </div>
+        <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
+
       </header>
       {/* END Home Header */}
 

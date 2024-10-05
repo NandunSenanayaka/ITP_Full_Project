@@ -27,6 +27,8 @@ function DoctorDetail(props) {
 
   return (
     <div className="doctor-detail-container">
+    
+
       <h1>Doctor Details</h1>
       <div className="doctor-detail-form">
         <div className="form-group">

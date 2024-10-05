@@ -30,7 +30,7 @@ const AdminHome = () => {
         <button className="admin-button" onClick={() => navigate('/NurseLogin')}>Appointment Scheduling</button>
         <button className="admin-button" onClick={() => navigate('/DoctorLogin')}>Manage Doctors</button>
         <button className="admin-button" onClick={() => navigate('/treatmentlogin')}>Treatment Specialist</button> {/* Link to AddTreatment */}
-        <button className="admin-button" onClick={() => navigate('/addPayment')}>Payment Handling</button>
+        <button className="admin-button" onClick={() => navigate('/AllPayment')}>Payment Handling</button>
         <button className="admin-button">Staff Management</button>
         <button className="admin-button">Pharmacy Management</button>
         <button className="admin-button">Equipment Handling</button>

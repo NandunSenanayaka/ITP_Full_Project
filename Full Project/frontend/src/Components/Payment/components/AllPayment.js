@@ -217,7 +217,7 @@ export default function AllPayment() {
         <div className='allpayment-home'>
 
             {/* Home Header */}
-            <header className="header">
+            {/* <header className="header">
                     <img alt="" className="logo-nav" src={Logo} />
                     <div className="logo">W E L L N E S S
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -225,7 +225,7 @@ export default function AllPayment() {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     H O S P I T A L</div>
                     <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
-                </header>
+                </header> */}
                 {/* Home Header End */}
 
         <div style={pageStyle}>

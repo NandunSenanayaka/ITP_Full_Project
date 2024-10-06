@@ -18,7 +18,6 @@ import AdminHome from "./Components/AdminHome/AdminHome";
 import TreatmentLogin from "./Components/TreatmentLogin/TreatmentLogin";
 import Contact from "./Components/ContactPage/Contact";
 
-
 import DoctorDetails from "./Components/DoctorDetails/DoctorDetails";
 import AddDoctor from "./Components/AddDoctor/AddDoctor";
 import UpdateDoctor from "./Components/UpdateDoctor/UpdateDoctor";
@@ -29,6 +28,8 @@ import Header from './Components/Payment/components/Header'; // Update path if n
 import AddPayment from './Components/Payment/components/AddPayment'; // Update path if necessary
 import AllPayment from './Components/Payment/components/AllPayment'; // Update path if necessary
 import UpdatePayment from './Components/Payment/components/UpdatePayment'; // Update path if necessary
+import PaymentLogin from "./Components/Paymentlogin/PaymentLogin";
+
 
 import Patient from './Components/AddPatient/Patient';
 import Patientdetails from './Components/Patientdetails/Patientdetails';
@@ -68,6 +69,7 @@ function App() {
           <Route path="/addPayment" element={<AddPayment />} />
           <Route path="/allPayment" element={<AllPayment />} />
           <Route path="/allPayment/:id" element={<UpdatePayment />} />
+          <Route path="/PaymentLogin" element={<PaymentLogin />} />
           {/* Define other routes as needed */}
 
           {/* Food-patient-related routes */}
@@ -75,9 +77,6 @@ function App() {
           <Route path="/addPatient" element={<Patient />} />
           <Route path="/Patientdetails" element={<Patientdetails />} />
           <Route path="/updatePatient/:id" element={<UpdatePatient />} />
-
-
-
 
 
         </Routes>

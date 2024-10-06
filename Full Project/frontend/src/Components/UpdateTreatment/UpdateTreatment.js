@@ -22,7 +22,7 @@ function UpdateTreatment() {
     // Regular expressions for validation
     const nameRegex = /^[A-Za-z\s]+$/; // Letters and spaces
     const descriptionBenefitRegex = /^[A-Za-z\s,\.]+$/; // Letters, commas, and periods
-    const durationRegex = /^([1-9]|[12]\d{1,2}|3[0-5]\d|365)$/; // Numbers between 1 and 365
+    const durationRegex = /^(?:[1-9]|[1-9]\d|[12]\d{2}|3[0-5]\d|36[0-5])$/; // Numbers between 1 and 365
 
     useEffect(() => {
         if (!_id) {

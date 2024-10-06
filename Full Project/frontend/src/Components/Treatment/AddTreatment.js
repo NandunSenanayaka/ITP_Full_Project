@@ -26,7 +26,7 @@ function AddTreatment() {
     // Regular expressions for validation
     const nameRegex = /^[A-Za-z\s]+$/; // Only letters
     const descriptionBenefitRegex = /^[A-Za-z\s,\.]+$/; // Only letters, commas, and periods
-    const durationRegex = /^([1-9]|[12]\d{1,2}|3[0-5]\d|365)$/; // Numbers between 1 and 365
+    const durationRegex = /^(?:[1-9]|[1-9]\d|[12]\d{2}|3[0-5]\d|36[0-5])$/; // Numbers between 1 and 365
 
     const handleChange = (e) => {
         const { name, value } = e.target;

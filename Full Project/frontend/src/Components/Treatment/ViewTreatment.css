@@ -26,7 +26,8 @@ body {
     width: 100%;                /* Full width to enable centering */
     display: flex;               /* Flexbox for alignment */
     justify-content: center;     /* Horizontally center the content */
-    align-items: center;      
+    align-items: center; 
+    margin-left: 80px;  
   }
 
   .logo {
@@ -69,6 +70,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    margin-top: -80px;
 }
 
 #search-bar {
@@ -224,9 +226,9 @@ button:nth-of-type(2):hover {
     margin-bottom: 2px;
   }
   
-  .logo-footer-Text {
+  .logo-footer-Text2 {
     font-size: 24px;
-    margin-top: -50px;
+    margin-top: 2px;
     color: #000000; /* Black color for the footer logo text */
   }
   
@@ -275,6 +277,24 @@ button:nth-of-type(2):hover {
     font-size: 15px;
   }
 
+  .address {
+    text-align: center; /* Centers text */
+    margin: 0 auto; /* Centers block-level container */
+    color: #000;
+    margin-top: 20px;
+  }
+  
+  .reportfooter-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centers content vertically if needed */
+    text-align: center; /* Centers the text inside the element */
+    margin: 0 auto;
+    color: #000;
+    visibility: hidden; /* Hide on screen */
+
+  }
 
   /* Treatment Report */
   .report-title {
@@ -282,9 +302,15 @@ button:nth-of-type(2):hover {
     margin-left: 180px;
 
 }
+.report-title2 {
+  visibility: hidden; /* Hide on screen */
+  margin-left: 180px;
+
+}
+
 
   @media print {
-    .report-title {
+    .report-title,.reportfooter-title{
       visibility: visible; /* show on screen */
   }
     
@@ -298,10 +324,19 @@ button:nth-of-type(2):hover {
     }
 
     #download-report, #add-button ,.viewtitle ,
-    .search-container ,#search-bar,#search-button,.login-btnAd,.actions,.update-button,.delete-button{
+    .search-container ,#search-bar,#search-button,
+    .login-btnAd,.actions,.update-button,.delete-button{
         display: none; /* Hide buttons when printing */
     }
 
+    .treatments-table{
+      margin-top: 100px;
+    }
+   
+    
+    .report-title {
+      margin-left: 80px;
+    }
     
   }
  /* Treatment Report */

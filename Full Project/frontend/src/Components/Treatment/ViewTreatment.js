@@ -39,18 +39,69 @@ function ViewTreatment() {
         documentTitle: "Treatments Report",
         onAfterPrint: () => alert("Treatments Report Successfully Downloaded!"),
     });
-
+/* search function*/ 
+  
+    useEffect(() => {
+        fetchHandler().then((data) => {
+            if (searchQuery.trim() === "") {
+                // If search query is empty, set all treatments
+                setTreatments(data || []);
+                setNoResults(data.length === 0);
+            } else {
+                // Filter treatments, excluding the ID field from the search
+                const filteredTreatments = data.filter((treatment) =>
+                    Object.keys(treatment).some((key) => {
+                        // Exclude the ID field
+                        if (key === "_id") {
+                            return false;
+                        }
+    
+                        const field = treatment[key];
+                        // Check if the field is a string or number
+                        if (typeof field === 'string') {
+                            return field.toLowerCase().includes(searchQuery.toLowerCase());
+                        } else if (typeof field === 'number') {
+                            return field.toString().includes(searchQuery);
+                        }
+                        return false;
+                    })
+                );
+                setTreatments(filteredTreatments);
+                setNoResults(filteredTreatments.length === 0);
+            }
+        });
+    }, [searchQuery]);
+    
+    // Manually trigger search when the button is clicked
     const handleSearch = () => {
         fetchHandler().then((data) => {
-            const filteredTreatments = data.filter((treatment) =>
-                Object.values(treatment).some((field) =>
-                    field.toString().toLowerCase().includes(searchQuery.toLowerCase())
-                )
-            );
-            setTreatments(filteredTreatments);
-            setNoResults(filteredTreatments.length === 0);
+            if (searchQuery.trim() === "") {
+                setTreatments(data || []);
+                setNoResults(data.length === 0);
+            } else {
+                const filteredTreatments = data.filter((treatment) =>
+                    Object.keys(treatment).some((key) => {
+                        // Exclude the ID field
+                        if (key === "_id") {
+                            return false;
+                        }
+    
+                        const field = treatment[key];
+                        // Check if the field is a string or number
+                        if (typeof field === 'string') {
+                            return field.toLowerCase().includes(searchQuery.toLowerCase());
+                        } else if (typeof field === 'number') {
+                            return field.toString().includes(searchQuery);
+                        }
+                        return false;
+                    })
+                );
+                setTreatments(filteredTreatments);
+                setNoResults(filteredTreatments.length === 0);
+            }
         });
     };
+    /* end search function*/ 
 
     const handleUpdate = (id) => {
         navigate(`/viewtreatment/${id}`);
@@ -88,7 +139,8 @@ function ViewTreatment() {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     A Y R V E D A
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    H O S P I T A L</div>
+                    H O S P I T A L
+                    </div>
                     <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
                 </header>
                 {/* Home Header End */}
@@ -99,9 +151,10 @@ function ViewTreatment() {
                     {/* Current Date and Time for Printed Report */}
                     
                     <div className='viewtitle'><h1>View Treatments</h1></div>
-                    <div className='viewreport'>
-                     <h1 className="report-title">REPORT</h1></div>
+                    <div className='viewreport'><h1 className="report-title">TREATMENT REPORT</h1></div>
+
                 </div>
+                <h3 className="reportfooter-title">56/A Weliweriya Road,Kirindiwela<br></br>Contact : 091 2222963</h3>
 
                 {/* Search container */}
                 <div className="search-container">
@@ -174,7 +227,8 @@ function ViewTreatment() {
                 <footer className="footer">
                     <div className="footer-content">
                         <img alt="Logo" className="logo-footer" src={Logo} />
-                        <div className="quick-links">
+
+                         <div className="quick-links">
                             <h4>Quick Links</h4>
                             <ul>
                                 <li><a href="#">Home</a></li>
@@ -198,15 +252,24 @@ function ViewTreatment() {
                                 <li><a href="#">Donate</a></li>
                                 <li><a href="#">Contact Us</a></li>
                             </ul>
-                        </div>
+                        </div> 
+
+
+
+
+
+                        {/* <h2 className="reportfooter-title">WELLNESS AYURVEDA HOSPITAL<br></br>56/A Weliweriya Road<br></br>Kirindiwela<br></br>Contact : 091 2222963</h2> */}
+
                     </div>
-                    <div className="logo-footer-Text">WELLNESS</div>
+
+                    <div className="logo-footer-Text2">WELLNESS</div>
                     <div className="social-media">
                         <a href="#"><FaInstagram size={24} /></a>
                         <a href="#"><FaLinkedin size={24} /></a>
                         <a href="#"><FaYoutube size={24} /></a>
                         <a href="#"><FaFacebook size={24} /></a>
                     </div>
+                    
                 </footer>
             </div> {/* End printable area */}
 

@@ -51,7 +51,7 @@ const Home = () => {
             treatments and personalized care. Join us on a journey towards lasting 
             wellness and harmony.
           </p>
-          <button className="appointment-btn">Request an Appointment</button>
+          <button className="appointment-btn" onClick={() => navigate('/DoctorPage')}>Request an Appointment</button>
         </div>
         <div className="doctor-images">
           <img className='Doc-1' src={IMG1} alt="Doctor 1" />

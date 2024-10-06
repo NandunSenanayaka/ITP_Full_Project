@@ -96,8 +96,8 @@ const TreatmentPage = () => {
           <li><a href="#">Foods</a></li>
           <li><a href="#">Find a Doctor</a></li>
           <li><a href="#">Pharmacy</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
+          <li><a href="/Contact">Contact</a></li>
+          </ul>
       </nav>
 
       <section className="TreatmentHome-section">

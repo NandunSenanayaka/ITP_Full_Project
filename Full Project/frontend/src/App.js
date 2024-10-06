@@ -16,6 +16,8 @@ import TreatmentPage from "./Components/TreatmentPage/TreatmentPage"; // Import 
 import HomeNav from "./Components/HomeNav/HomeNav";
 import AdminHome from "./Components/AdminHome/AdminHome";
 import TreatmentLogin from "./Components/TreatmentLogin/TreatmentLogin";
+import Contact from "./Components/ContactPage/Contact";
+
 
 import DoctorDetails from "./Components/DoctorDetails/DoctorDetails";
 import AddDoctor from "./Components/AddDoctor/AddDoctor";
@@ -54,7 +56,7 @@ function App() {
           <Route path="/viewtreatment/:_id" element={<UpdateTreatment />} />
           <Route path="/treatmentpage" element={<TreatmentPage />} /> {/* Route to TreatmentPage */}
           <Route path="/TreatmentLogin" element={<TreatmentLogin />} /> {/* Route to TreatmentLogin */}
-
+          <Route path="/Contact" element={<Contact />} />
           {/* Doctor-related routes */}
           <Route path="/DoctorLogin" element={<DoctorLogin/>}></Route>
           <Route path="/addDoctor" element={<AddDoctor/>}></Route>

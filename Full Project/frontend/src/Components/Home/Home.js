@@ -5,12 +5,10 @@ import { FaInstagram, FaLinkedin, FaYoutube, FaFacebook } from 'react-icons/fa';
 import Chatbox from '../Chatbox/Chatbox';
 import { useNavigate } from 'react-router-dom';
 
-
 import IMG1 from "../Assets/Doctor 1.png";
 import IMG2 from "../Assets/Doctor 2.png";
 import Logo from "../Assets/HeroLogo.png";
 import HomeWelcome from "../Assets/HomeWelcome.png";
-
 
 const Home = () => {
   const navigate = useNavigate();
@@ -32,13 +30,13 @@ const Home = () => {
       {/* Navigation Section */}
       <nav className="navigation">
         <ul>
-        <li><Link to="/Home">Home</Link></li>
+        <li><Link to="/">Home</Link></li>
         <li><Link to="/treatmentpage">Treatments</Link></li>
           <li><a href="#">Foods</a></li>
           <li><a href="/DoctorPage">Find a Doctor</a></li>
           <li><a href="#">Pharmacy</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
+          <li><a href="/Contact">Contact</a></li>
+          </ul>
       </nav>
 
       

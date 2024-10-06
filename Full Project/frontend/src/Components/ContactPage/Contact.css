@@ -6,7 +6,7 @@ body {
   }
   
   
-  .homeTr-container {
+  .home-container1 {
     background-image: url('../Assets/MHome.png'); /* Set background image */
     background-size: cover; /* Make sure the image covers the entire container */
     background-position: center; /* Center the image */
@@ -111,10 +111,207 @@ body {
   
   
   
-
   
-/* Footer Styles */
-.footer {
+  
+  /* Home Section Styles */
+  .home-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px;
+    background-color: transparent; /* Transparent to show the gradient */
+  }
+  
+  .home-content {
+    max-width: 50%;
+    color: #000000; /* Black color for the main content text */
+  }
+  
+  .home-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .home-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .appointment-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .doctor-images {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .doctor-images img {
+    width: 250px;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .Doc-1 {
+    margin-bottom: 50px;
+  }
+  
+  .Doc-2 {
+    margin-top: 50px;
+  }
+  
+  
+  
+  
+  
+  /* Welcome Section Styles */
+  
+  .popup-wrapper{
+  }
+  
+  .welcome-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    background-color: #f9f9f9;
+  }
+  
+  .image-container {
+    flex: 1;
+    margin-right: 50px;
+  }
+  
+  .welcome-image {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+  }
+  
+  .text-container {
+    flex: 1;
+    color: #333;
+  }
+  
+  .text-container h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .text-container p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .welcome-section {
+      flex-direction: column;
+    }
+  
+    .image-container {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  
+    .welcome-image {
+      max-width: 100%;
+    }
+  }
+  
+  /* Popup Wrapper */
+  .popup-wrapper1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 20px;
+  }
+  
+  /* Popup Content (with border) */
+  .popup-content {
+    background-color: #fff; /* White background for the popup */
+    border: 3px solid #fff; /* Purple or any border color you prefer */
+    padding: 30px;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Drop shadow for popup effect */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .image-container {
+    flex: 1;
+    margin-right: 0px;
+    margin-left: 5px
+  }
+  
+  .welcome-image {
+    max-width: 100%; /* The image will take up the full width of its container */
+    height: 600px; /* Maintain the aspect ratio */
+    object-fit: contain; /* Adjusts how the content fits within the container */
+  }
+  
+  
+  .text-container {
+    flex: 1;
+    color: #333;
+  }
+  
+  .text-container h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .text-container p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .popup-content {
+      flex-direction: column;
+      padding: 20px;
+    }
+  
+    .image-container {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  
+    .welcome-image {
+      max-width: 100%;
+    }
+  }
+  
+  
+  /* END Welcome Section Styles */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Footer Styles */
+  .footer {
     padding: 20px;
     background-color: #ffffff;
     border-top: 1px solid #d1d1d1; /* Gray line between home section and footer */
@@ -181,170 +378,3 @@ body {
     font-size: 15px;
   }
   
-
-
-
-
-
-/* CSS for Treatment Component */
-.treatment-container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
-}
-
-th, td {
-    text-align: left;
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #f2f2f2;
-    color: #333;
-}
-
-td {
-    background-color: #fff;
-    color: #555;
-}
-
-td:last-child {
-    display: flex;
-    gap: 10px;
-}
-
-.update-link {
-    padding: 8px 15px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    display: inline-block;
-    text-align: center;
-}
-
-.update-link:hover {
-    background-color: #45a049;
-}
-
-.delete-button {
-    padding: 8px 15px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-}
-
-.delete-button:hover {
-    background-color: #d32f2f;
-}
-
-
-/* Container for Treatment Section */
-.TreatmentHome-section {
-    padding: 40px;
-    text-align: center;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #333;
-  }
-  
-  .TreatmentHome-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    justify-items: center;
-    align-items: flex-start;
-  }
-  
-  /* Treatment Card */
-  .treatment-card {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .treatment-card:hover {
-    transform: translateY(-10px);
-  }
-  
-  /* Treatment Image */
-  .treatment-image {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
-  }
-  
-  /* Treatment Information */
-  .treatment-info {
-    padding: 20px;
-    text-align: left;
-  }
-  
-  .treatment-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #0056b3;
-  }
-  
-  .treatment-description {
-    font-size: 1rem;
-    margin-bottom: 15px;
-    color: #555;
-  }
-  
-  .treatment-details {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .treatment-details li {
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-    color: #666;
-  }
-  
-
-  .payment-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.payment-button:hover {
-    background-color: #0056b3;
-}
-

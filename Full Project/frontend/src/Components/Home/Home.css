@@ -171,8 +171,6 @@ body {
 
 /* Welcome Section Styles */
 
-.popup-wrapper{
-}
 
 .welcome-section {
   display: flex;
@@ -232,7 +230,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 70vh;
-  background-color: rgb(255, 255, 255); /* Background overlay */
   padding: 20px;
 }
 

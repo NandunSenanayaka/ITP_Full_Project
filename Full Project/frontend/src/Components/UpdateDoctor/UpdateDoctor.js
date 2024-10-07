@@ -3,8 +3,6 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import { FaInstagram, FaLinkedin, FaYoutube, FaFacebook } from 'react-icons/fa';
-// import "./UpdateDoctor.css";
-
 import Logo from "../Assets/HeroLogo.png"; // Import your logo
 
 function UpdateDoctor() {
@@ -21,52 +19,88 @@ function UpdateDoctor() {
     Experience: "",
     About: "",
   }); // Set initial state to null
-  const history = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
+
+  // Track validation states
+  const [isEmailValid, setIsEmailValid] = useState(false); 
+  const [ageError, setAgeError] = useState(""); 
+  const [phoneError, setPhoneError] = useState(""); 
 
   useEffect(() => {
     const fetchHandler = async () => {
       await axios
-
         .get(`http://localhost:5000/doctors/${id}`)
         .then((res) => res.data)
-        .then((data) => setInputs(data.doctor1 || {})); // Added
+        .then((data) => setInputs(data.doctor1 || {}));
     };
-
     fetchHandler();
   }, [id]);
-
 
   const sendRequest = async () => {
     await axios
       .put(`http://localhost:5000/doctors/${id}`, {
-       name:inputs.name,
-       gmail:inputs.gmail,
-       phone: Number(inputs.phone),
-       Gender: String(inputs.Gender),
-       age: Number(inputs.age),
-       Specialiation: String(inputs.Specialiation),
-       Qualification: String(inputs.Qualification),
-       Experience: String(inputs.Experience),
-       About: String(inputs.About),
-    })
-    .then((res) => res.data);
+        name: inputs.name,
+        gmail: inputs.gmail,
+        phone: Number(inputs.phone),
+        Gender: String(inputs.Gender),
+        age: Number(inputs.age),
+        Specialiation: String(inputs.Specialiation),
+        Qualification: String(inputs.Qualification),
+        Experience: String(inputs.Experience),
+        About: String(inputs.About),
+      })
+      .then((res) => res.data);
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // Real-time email validation
+    if (name === "gmail") {
+      const emailPattern = /^[\w.%+-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+      setIsEmailValid(emailPattern.test(value)); // Check if the email is valid
+    }
+
+    // Filter out special characters for the name input
+    if (name === "name") {
+      const namePattern = /^[A-Za-z\s]*$/; // Allows only letters and spaces
+      if (!namePattern.test(value)) {
+        return; // Prevent updating state if invalid characters are entered
+      }
+    }
+
+    // Age validation
+    if (name === "age") {
+      const ageValue = Number(value);
+      if (ageValue < 20 || ageValue > 70) {
+        setAgeError("Age must be between 20 and 70."); // Set error message
+      } else {
+        setAgeError(""); // Clear error message if age is valid
+      }
+    }
+
+    // Phone validation
+    if (name === "phone") {
+      const phonePattern = /^\d{10}$/; // Allows only 10-digit numbers
+      if (!phonePattern.test(value)) {
+        setPhoneError("Phone number must be exactly 10 digits."); // Set error message
+      } else {
+        setPhoneError(""); // Clear error message if valid
+      }
+    }
+
+    // Update input values
     setInputs((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
 
-  
-  
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
-    sendRequest().then(() => history("/doctorDetails"));
+    if (isEmailValid && !ageError && !phoneError) {
+      sendRequest().then(() => navigate("/doctorDetails"));
+    }
   };
 
   return (
@@ -104,6 +138,7 @@ function UpdateDoctor() {
             value={inputs.gmail || ""}
             required
           />
+          {!isEmailValid && inputs.gmail && <p style={{color: 'red'}}>Invalid email format.</p>}
         </div>
 
         <div className="form-group">
@@ -115,6 +150,7 @@ function UpdateDoctor() {
             value={inputs.phone || ""}
             required
           />
+          {phoneError && <p style={{color: 'red'}}>{phoneError}</p>}
         </div>
 
         <div className="form-group">
@@ -129,18 +165,19 @@ function UpdateDoctor() {
         </div>
 
         <div className="form-group">
-          <label>age</label>
+          <label>Age</label>
           <input
-            type="Number"
+            type="number"
             name="age"
             onChange={handleChange}
             value={inputs.age || ""}
             required
           />
+          {ageError && <p style={{color: 'red'}}>{ageError}</p>}
         </div>
 
         <div className="form-group">
-          <label>Specialiation</label>
+          <label>Specialization</label>
           <input
             type="text"
             name="Specialiation"
@@ -229,7 +266,6 @@ function UpdateDoctor() {
         <p>© 2024. Designed by Sahan. All right reserved.</p>
       </div>
       {/* END Footer Section */}
-
     </div>
   );
 }

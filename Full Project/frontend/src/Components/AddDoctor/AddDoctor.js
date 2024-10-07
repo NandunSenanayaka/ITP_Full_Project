@@ -22,6 +22,7 @@ function AddDoctor() {
 
   const [isEmailValid, setIsEmailValid] = useState(false); // Track email validation
   const [ageError, setAgeError] = useState(""); // Track age validation error
+  const [phoneError, setPhoneError] = useState(""); // Track phone validation error
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +48,16 @@ function AddDoctor() {
         setAgeError("Age must be between 20 and 70."); // Set error message
       } else {
         setAgeError(""); // Clear error message if age is valid
+      }
+    }
+
+    // Phone validation
+    if (name === "phone") {
+      const phonePattern = /^\d{10}$/; // Allows only 10-digit numbers
+      if (!phonePattern.test(value)) {
+        setPhoneError("Phone number must be exactly 10 digits."); // Set error message
+      } else {
+        setPhoneError(""); // Clear error message if valid
       }
     }
 
@@ -86,7 +97,7 @@ function AddDoctor() {
         <img alt="" className="logo-nav" src={Logo} /> 
         <div className="logo">W E L L N E S S &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A Y U R V E D A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; H O S P I T A L</div>
       </header>
-      {/* Enf=d Home Header */}
+      {/* End Home Header */}
 
       <DNav></DNav>
       <h1>Add Doctor</h1>
@@ -129,6 +140,8 @@ function AddDoctor() {
               required
               disabled={!isEmailValid} // Disable phone field until valid email is provided
             />
+            {/* Display phone error message */}
+            {phoneError && <p className="error">{phoneError}</p>}
           </div>
 
           <div className="form-group">
@@ -208,7 +221,6 @@ function AddDoctor() {
         </form>
       </div>
 
-      
       {/* Footer Section */}
       <footer className="footer">
         <div className="footer-content">
@@ -251,7 +263,6 @@ function AddDoctor() {
       <div className='copy-right'>
         <p>© 2024. Designed by Sahan. All right reserved.</p>
       </div>
-      
     </div>
   );
 }

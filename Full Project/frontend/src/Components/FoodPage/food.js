@@ -15,7 +15,6 @@ import Logo from "../Assets/HeroLogo.png";
 import { useNavigate } from 'react-router-dom';
 import { FaInstagram, FaLinkedin, FaYoutube, FaFacebook } from 'react-icons/fa';
 
-
 const foodItems = [
     {
       id: 1,

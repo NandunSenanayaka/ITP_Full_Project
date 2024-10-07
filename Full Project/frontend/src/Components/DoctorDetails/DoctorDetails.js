@@ -21,7 +21,6 @@ function DoctorDetails() {
   const [SearchQuery, setSearchQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
 
-
   useEffect(() => {
     fetchHandler().then((data) => setDoctors(data.doctors)); // Ensure `data.doctors` exists in the response
   }, []);

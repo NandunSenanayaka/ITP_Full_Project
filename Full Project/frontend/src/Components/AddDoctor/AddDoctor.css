@@ -14,7 +14,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Full viewport height */
+  min-height: 75vh; /* Full viewport height */
 }
 
 /* Ensure the form has a max-width */
@@ -34,7 +34,7 @@ h1 {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  xmargin-bottom: 5px;
 }
 
 .form-group label {

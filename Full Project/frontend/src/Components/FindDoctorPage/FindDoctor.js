@@ -94,8 +94,13 @@ const TreatmentPage = () => {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/treatmentpage">Treatments</Link></li>
           <li><a href="/food">Foods</a></li>
+<<<<<<< HEAD
           <li><a href="/DoctorPage">Find a Doctor</a></li>
           <li><a href="#">Pharmacy</a></li>
+=======
+          <li><a href="#">Find a Doctor</a></li>
+          <li><a href="/PharmacyPage">Pharmacy</a></li>
+>>>>>>> 6e0aa38af75142802c8aa2e3973b625f05c639d5
           <li><a href="/Contact">Contact</a></li>
           </ul>
       </nav>

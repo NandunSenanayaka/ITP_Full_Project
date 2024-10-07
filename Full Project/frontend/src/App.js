@@ -36,6 +36,7 @@ import Patientdetails from './Components/Patientdetails/Patientdetails';
 import UpdatePatient from './Components/UpdatePatient/UpdatePatient';
 import FoodLogin from "./Components/FoodLogin/FoodLogin";
 import FoodPage from "./Components/FoodPage/food";
+import PharmacyPage from './Components/PharmacyPage/PharmacyPage';
 
 
 
@@ -80,6 +81,11 @@ function App() {
           <Route path="/Patientdetails" element={<Patientdetails />} />
           <Route path="/updatePatient/:id" element={<UpdatePatient />} />
           <Route path="/food" element={<FoodPage/>} />
+
+          <Route path="/PharmacyPage" element={<PharmacyPage/>} />
+
+
+          
 
 
 

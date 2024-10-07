@@ -25,7 +25,7 @@ const HomeNav = () => {
           <li><Link to="/treatmentpage">Treatments</Link></li>
           <li><a href="#">Foods</a></li>
           <li><a href="/DoctorPage">Find a Doctor</a></li>
-          <li><a href="#">Pharmacy</a></li>
+          <li><a href="/PharmacyPage">Pharmacy</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </nav>

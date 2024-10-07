@@ -185,7 +185,7 @@ function UpdatePayment() {
       </footer>
 
       <div className='copy-right'>
-        <p>© 2024. Designed by Sahan. All right reserved.</p>
+        <p>© 2024. Designed by Susara. All right reserved.</p>
       </div>
       {/* END Footer Section */}
         </div>

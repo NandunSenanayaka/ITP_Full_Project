@@ -20,7 +20,7 @@ const treatments = [
     title: 'Dr. Ayesha Kumar',
     description: 'Dr. Ayesha Kumar has over 15 years of experience in providing traditional skin care treatments and herbal therapies, specializing in treating chronic skin conditions using ancient Ayurvedic principles.',
     benifit: 'Dermatologist',
-    minDuration: '7 Days',
+    minDuration: 'Rs.1500',
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const treatments = [
     title: 'Dr. Rajesh Deshmukh',
     description: 'Dr. Rajesh Deshmukh offers personalized treatment plans for digestive and metabolic disorders. With 20 years of practice, he is an expert in herbal remedies for gastrointestinal health and overall well-being.',
     benifit: 'Internal Medicine Specialist',
-    minDuration: '7 Days',
+    minDuration: 'Rs.1500',
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const treatments = [
     title: 'Dr. Shalini Nair',
     description: 'Dr. Shalini Nair has extensive expertise in women’s health and wellness, focusing on hormonal balance and natural fertility treatments through Ayurvedic herbs and lifestyle modifications.',
     benifit: 'Gynecologist',
-    minDuration: '5 Days',
+    minDuration: 'Rs.1500',
   },
 
   {
@@ -45,7 +45,7 @@ const treatments = [
     title: 'Dr. Shehani Sen',
     description: 'Dr. Shehani Sen is known for his gentle approach to pediatric care, combining Ayurvedic treatments to enhance children s immunity, growth, and mental health through natural remedies and holistic practices.',
     benifit: ' Pediatrician',
-    minDuration: '7 Days',
+    minDuration: 'Rs.1500',
   },
   {
     id: 5,
@@ -53,7 +53,7 @@ const treatments = [
     title: 'Dr. Arjun Sen',
     description: 'Dr. Arjun Sen specializes in Ayurvedic diet planning and lifestyle counseling. She focuses on promoting optimal health and managing chronic conditions by aligning diet with Ayurvedic body types and seasonal changes..',
     benifit: 'Nutritionist',
-    minDuration: '7 Days',
+    minDuration: 'Rs.1500',
   },
   {
     id: 6,
@@ -61,7 +61,7 @@ const treatments = [
     title: 'Dr. Dev Sharma',
     description: 'Dr. Dev Sharma treats musculoskeletal disorders using traditional Ayurvedic therapies like Panchakarma, with a focus on non-invasive techniques to improve joint health and mobility.',
     benifit: 'Orthopedic Specialist',
-    minDuration: '3 Days',
+    minDuration: 'Rs.1500',
   },
   // Add more treatments here as needed
 ];
@@ -111,7 +111,7 @@ const TreatmentPage = () => {
           <p className="treatment-description">{treatment.description}</p>
           <ul className="treatment-details">
             <li>Specialty: {treatment.benifit}</li> {/* New benefit field */}
-            <li>Minimum duration: {treatment.minDuration}</li>
+            <li>Chanell Fee: {treatment.minDuration}</li>
             {/* Optionally include other fields if available */}
             {/* Payment Button */}
              <button className="payment-button" onClick={() => handlePayment(treatment.title)}>

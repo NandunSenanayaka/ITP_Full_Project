@@ -84,6 +84,13 @@ function Patientdetails() {
             <div className="action-buttons">
                 <button className="download-button" onClick={handlePrint}>Print Report</button>
             </div>
+            <br/>
+            <br/>
+            <br/>
+
+            <br/>
+
+
             <div className="search-container">
                 <input
                     type="text"

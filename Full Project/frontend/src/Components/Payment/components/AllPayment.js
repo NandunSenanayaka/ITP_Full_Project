@@ -1,4 +1,3 @@
-// all payments
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
@@ -8,7 +7,6 @@ import './print.css';
 import Logo from "../../Assets/HeroLogo.png";
 import { FaInstagram, FaLinkedin, FaYoutube, FaFacebook } from 'react-icons/fa';
 
-
 export default function AllPayment() {
     const [payments, setPayments] = useState([]);
     const [filteredPayments, setFilteredPayments] = useState([]);
@@ -17,16 +15,16 @@ export default function AllPayment() {
     const [noResults, setNoResults] = useState(false);
     const [currentDateTime, setCurrentDateTime] = useState(new Date().toLocaleString());
     const navigate = useNavigate(); 
-    const ComponentsRef = useRef();
+    const componentsRef = useRef();
 
     useEffect(() => {
         fetchPayments();
-        
+
         // Update date and time every second
         const intervalId = setInterval(() => {
             setCurrentDateTime(new Date().toLocaleString());
         }, 1000);
-        
+
         return () => clearInterval(intervalId); // Clean up interval on unmount
     }, []);
 
@@ -64,7 +62,7 @@ export default function AllPayment() {
     };
 
     const handlePrint = useReactToPrint({
-        content: () => ComponentsRef.current,
+        content: () => componentsRef.current,
         documentTitle: "Payment Report",
         onAfterPrint: () => alert("Payment Report Successfully Downloaded!"),
     });
@@ -104,7 +102,6 @@ export default function AllPayment() {
         borderRadius: '10px',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
     };
-    
 
     const headerStyle = {
         textAlign: 'center',
@@ -184,181 +181,136 @@ export default function AllPayment() {
     const searchContainerStyle = {
         display: 'flex', 
         justifyContent: 'space-between', 
-        alignItems: 'center',
+        alignItems: 'center', 
         marginBottom: '20px'
     };
 
-    const searchBarStyle = {
-        padding: '12px',
-        width: '70%',
-        boxSizing: 'border-box',
-        borderRadius: '5px',
+    const searchInputStyle = {
+        padding: '10px',
         border: '1px solid #ced4da',
-        fontSize: '16px',
+        borderRadius: '4px',
+        flexGrow: 1,
+        marginRight: '10px'
     };
 
-    const downloadButtonStyle = {
-        backgroundColor: '#007bff',  
-        color: '#fff',  
-        border: 'none', 
-        padding: '12px 25px', 
-        fontSize: '16px', 
-        borderRadius: '8px',  
-        cursor: 'pointer',  
-        transition: 'background-color 0.3s, transform 0.3s', 
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
-    };
-
-    const hoverEffect = {
-        '&:hover': {
-            backgroundColor: '#0056b3', 
-            transform: 'scale(1.05)',  
-        }
-    };
+    // Calculate total doctor charges
+    const totalCharges = filteredPayments.length * 1500; // Assuming each charge is Rs. 1500
 
     return (
-        <div className='allpayment-home'>
-
-            {/* Home Header */}
-            {/* <header className="header">
-                    <img alt="" className="logo-nav" src={Logo} />
-                    <div className="logo">W E L L N E S S
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    A Y R V E D A
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    H O S P I T A L</div>
-                    <button className="login-btnAd" onClick={() => navigate('/AdminHome')}>Log Out</button>
-                </header> */}
-                {/* Home Header End */}
-
         <div style={pageStyle}>
-            
-            <h1 style={headerStyle}>Payment Details</h1>
-
+            <h1 style={headerStyle}>All Payments</h1>
+            <p style={dateTimeStyle}>Current Date and Time: {currentDateTime}</p>
             <div style={searchContainerStyle}>
-                <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search Payment..."
-                    style={searchBarStyle}
+                <input 
+                    type="text" 
+                    placeholder="Search..." 
+                    value={searchQuery} 
+                    onChange={e => setSearchQuery(e.target.value)} 
+                    style={searchInputStyle}
                 />
-
-                <button 
-                    onClick={handlePrint} 
-                    style={{ ...downloadButtonStyle, ...hoverEffect }}
-                >
-                    Download Report
-                </button>
+                <button onClick={handlePrint} style={buttonStyle}>Print</button>
+            </div>
+            <div style={hospitalDetailsStyle}>
+                Hospital Name: <strong>ABC Hospital</strong><br />
+                Address: <strong>123 Main St, City, Country</strong><br />
+                Phone: <strong>(123) 456-7890</strong>
             </div>
 
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                filteredPayments.length === 0 && noResults ? (
-                    <p>No results found</p>
-                ) : (
-                    
-                    <div ref={ComponentsRef}>
-                       
-                        {/* Hospital Details - Visible in PDF */}
-                        <div style={hospitalDetailsStyle}>
-                            <p>WELLNESS AYURVEDA HOSPITAL</p>
-                            <p>56/A Weliweriya Road, Kirindiwela</p>
-                            <p>Phone: 0777513155</p>
-                        </div>
+            {loading && <div>Loading payments...</div>}
+            {noResults && !loading && <div>No payments found.</div>}
+            {!loading && filteredPayments.map((payment, index) => (
+                <div key={index} style={billContainerStyle}>
+                    <div style={billItemStyle}>
+                        <div style={billLabelStyle}>User Name:</div>
+                        <div style={billValueStyle}>{payment.UserName}</div>
+                    </div>
+                    <div style={billItemStyle}>
+                        <div style={billLabelStyle}>Method Type:</div>
+                        <div style={billValueStyle}>{payment.methodType}</div>
+                    </div>
+                    <div style={billItemStyle}>
+                        <div style={billLabelStyle}>Card Number:</div>
+                        <div style={billValueStyle}>{maskCardNumber(payment.cardNumber)}</div>
+                    </div>
+                    <div style={billItemStyle}>
+                        <div style={billLabelStyle}>Date:</div>
+                        <div style={billValueStyle}>{payment.date}</div>
+                    </div>
+                    <div style={billItemStyle}>
+                        <div style={billLabelStyle}>CVC:</div>
+                        <div style={billValueStyle}>{maskCvc()}</div>
+                    </div>
+                    <div style={billItemStyle}>
+                        <div style={billLabelStyle}>Description:</div>
+                        <div style={billValueStyle}>{payment.description || 'N/A'}</div>
+                    </div>
+                    <div style={billItemStyle}>
+                        <div style={billLabelStyle}>Doctor Charges:</div>
+                        <div style={billValueStyle}>Rs. 1500</div>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+                        <button style={buttonStyle} onClick={() => handleEdit(payment._id)}>
+                            <FaEdit /> Edit
+                        </button>
+                        <button style={buttonStyle} onClick={() => handleDelete(payment._id)}>
+                            <FaTrashAlt /> Delete
+                        </button>
+                    </div>
+                </div>
+            ))}
 
-                        {/* Current Date and Time for Printed Report */}
-                        <div style={dateTimeStyle}>
-                            <p>{currentDateTime}</p>
-                        </div>
+            {/* Display total charges */}
+            <div style={{ textAlign: 'right', fontSize: '20px', fontWeight: 'bold', marginTop: '20px' }}>
+                Total Doctor Charges: Rs. {totalCharges}
+            </div>
 
-                        {filteredPayments.map((payment, index) => (
-                            <div key={index} style={billContainerStyle}>
-                                <div style={billItemStyle}>
-                                    <div style={billLabelStyle}>User Name:</div>
-                                    <div style={billValueStyle}>{payment.UserName}</div>
-                                </div>
-                                <div style={billItemStyle}>
-                                    <div style={billLabelStyle}>Method Type:</div>
-                                    <div style={billValueStyle}>{payment.methodType}</div>
-                                </div>
-                                <div style={billItemStyle}>
-                                    <div style={billLabelStyle}>Card Number:</div>
-                                    <div style={billValueStyle}>{maskCardNumber(payment.cardNumber)}</div>
-                                </div>
-                                <div style={billItemStyle}>
-                                    <div style={billLabelStyle}>Date:</div>
-                                    <div style={billValueStyle}>{payment.date}</div>
-                                </div>
-                                <div style={billItemStyle}>
-                                    <div style={billLabelStyle}>CVC:</div>
-                                    <div style={billValueStyle}>{maskCvc()}</div>
-                                </div>
-                                <div style={billItemStyle}>
-                                    <div style={billLabelStyle}>Description:</div>
-                                    <div style={billValueStyle}>{payment.description || 'N/A'}</div>
-                                </div>
-                                {/* Edit and Delete Buttons - Visible only on page */}
-                                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                                    <button style={buttonStyle} onClick={() => handleEdit(payment._id)}>
-                                        <FaEdit /> Edit
-                                    </button>
-                                    <button style={buttonStyle} onClick={() => handleDelete(payment._id)}>
-                                        <FaTrashAlt /> Delete
-                                    </button>
-                                </div>
+            {/* Print Section */}
+            <div style={{ display: 'none' }}>
+                <div ref={componentsRef}>
+                    <h1 style={headerStyle}>Payment Report</h1>
+                    <p style={dateTimeStyle}>Date: {currentDateTime}</p>
+                    <div style={hospitalDetailsStyle}>
+                        Hospital Name: <strong>ABC Hospital</strong><br />
+                        Address: <strong>123 Main St, City, Country</strong><br />
+                        Phone: <strong>(123) 456-7890</strong>
+                    </div>
+                    {filteredPayments.map((payment, index) => (
+                        <div key={index} style={billContainerStyle}>
+                            <div style={billItemStyle}>
+                                <div style={billLabelStyle}>User Name:</div>
+                                <div style={billValueStyle}>{payment.UserName}</div>
                             </div>
-                        ))}
-                    </div>
-                )
-            )}
-
-            {/* Footer Section */}
-            <footer className="footer">
-                    <div className="footer-content">
-                        <img alt="Logo" className="logo-footer" src={Logo} />
-                        <div className="quick-links">
-                            <h4>Quick Links</h4>
-                            <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Treatments</a></li>
-                                <li><a href="#">Foods</a></li>
-                                <li><a href="#">Pharmacy</a></li>
-                            </ul>
+                            <div style={billItemStyle}>
+                                <div style={billLabelStyle}>Method Type:</div>
+                                <div style={billValueStyle}>{payment.methodType}</div>
+                            </div>
+                            {/* <div style={billItemStyle}>
+                                <div style={billLabelStyle}>Card Number:</div>
+                                <div style={billValueStyle}>{maskCardNumber(payment.cardNumber)}</div>
+                            </div>
+                            <div style={billItemStyle}>
+                                <div style={billLabelStyle}>Date:</div>
+                                <div style={billValueStyle}>{payment.date}</div>
+                            </div>
+                            <div style={billItemStyle}>
+                                <div style={billLabelStyle}>CVC:</div>
+                                <div style={billValueStyle}>{maskCvc()}</div>
+                            </div> */}
+                            <div style={billItemStyle}>
+                                <div style={billLabelStyle}>Description:</div>
+                                <div style={billValueStyle}>{payment.description || 'N/A'}</div>
+                            </div>
+                            <div style={billItemStyle}>
+                                <div style={billLabelStyle}>Doctor Charges:</div>
+                                <div style={billValueStyle}>Rs. 1500</div>
+                            </div>
                         </div>
-                        <div className="about">
-                            <h4>About</h4>
-                            <ul>
-                                <li><a href="#">Find a Doctor</a></li>
-                                <li><a href="#">Request an Appointment</a></li>
-                                <li><a href="#">Find a Location</a></li>
-                                <li><a href="#">Get an Opinion</a></li>
-                            </ul>
-                        </div>
-                        <div className="support">
-                            <h4>Support</h4>
-                            <ul>
-                                <li><a href="#">Donate</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
+                    ))}
+                    <div style={{ textAlign: 'right', fontSize: '20px', fontWeight: 'bold', marginTop: '20px' }}>
+                        Total Doctor Charges: Rs. {totalCharges}
                     </div>
-                    <div className="logo-footer-Text">WELLNESS</div>
-                    <div className="social-media">
-                        <a href="#"><FaInstagram size={24} /></a>
-                        <a href="#"><FaLinkedin size={24} /></a>
-                        <a href="#"><FaYoutube size={24} /></a>
-                        <a href="#"><FaFacebook size={24} /></a>
-                    </div>
-                </footer>
-            </div> 
-            <div className='copy-right'>
-                <p>© 2024. Designed by Sahan. All rights reserved.</p>
+                </div>
             </div>
-             {/* Footer Section End */}
         </div>
-        
-        
     );
 }

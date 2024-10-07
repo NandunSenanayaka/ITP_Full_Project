@@ -48,7 +48,7 @@ function DoctorDetails() {
       setNoResults(filteredDoctors.length === 0);
     });
   };
-  // Search function end
+  // Search function end..
 
   return (
     <div ref={ComponentsRef} className="container">

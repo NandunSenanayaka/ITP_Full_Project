@@ -18,7 +18,8 @@ function UpdateDoctor() {
     Qualification: "",
     Experience: "",
     About: "",
-  }); // Set initial state to null
+  }); 
+  // Set initial state to null
   const { id } = useParams();
 
   // Track validation states

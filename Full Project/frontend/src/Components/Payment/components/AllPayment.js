@@ -16,6 +16,7 @@ export default function AllPayment() {
     const [currentDateTime, setCurrentDateTime] = useState(new Date().toLocaleString());
     const navigate = useNavigate(); 
     const componentsRef = useRef();
+    const financialRef = useRef(); // Reference for financial statement printing
 
     useEffect(() => {
         fetchPayments();
@@ -65,6 +66,12 @@ export default function AllPayment() {
         content: () => componentsRef.current,
         documentTitle: "Payment Report",
         onAfterPrint: () => alert("Payment Report Successfully Downloaded!"),
+    });
+
+    const handleFinancialPrint = useReactToPrint({
+        content: () => financialRef.current,
+        documentTitle: "Financial Statement",
+        onAfterPrint: () => alert("Financial Statement Successfully Downloaded!"),
     });
 
     const handleSearch = () => {
@@ -208,12 +215,13 @@ export default function AllPayment() {
                     onChange={e => setSearchQuery(e.target.value)} 
                     style={searchInputStyle}
                 />
-                <button onClick={handlePrint} style={buttonStyle}>Print</button>
+                <button onClick={handlePrint} style={buttonStyle}>Download Report</button>
+                <button onClick={handleFinancialPrint} style={buttonStyle}> Financial Statement</button> {/* New Button */}
             </div>
             <div style={hospitalDetailsStyle}>
-                Hospital Name: <strong>ABC Hospital</strong><br />
-                Address: <strong>123 Main St, City, Country</strong><br />
-                Phone: <strong>(123) 456-7890</strong>
+                <strong>WELLNESS AYURWEDA HOSPITAL</strong><br />
+                No: <strong>56/A Weliweriya road, Kirindiwela</strong><br />
+                Phone: <strong>0777513155</strong>
             </div>
 
             {loading && <div>Loading payments...</div>}
@@ -259,20 +267,15 @@ export default function AllPayment() {
                 </div>
             ))}
 
-            {/* Display total charges */}
-            <div style={{ textAlign: 'right', fontSize: '20px', fontWeight: 'bold', marginTop: '20px' }}>
-                Total Doctor Charges: Rs. {totalCharges}
-            </div>
-
-            {/* Print Section */}
+            {/* Print Section for Payments */}
             <div style={{ display: 'none' }}>
                 <div ref={componentsRef}>
                     <h1 style={headerStyle}>Payment Report</h1>
                     <p style={dateTimeStyle}>Date: {currentDateTime}</p>
                     <div style={hospitalDetailsStyle}>
-                        Hospital Name: <strong>ABC Hospital</strong><br />
-                        Address: <strong>123 Main St, City, Country</strong><br />
-                        Phone: <strong>(123) 456-7890</strong>
+                        <strong>WELLNESS AYURWEDA HOSPITAL</strong><br />
+                        No: <strong>56/A Weliweriya road, Kirindiwela</strong><br />
+                        Phone: <strong>0777513155</strong>
                     </div>
                     {filteredPayments.map((payment, index) => (
                         <div key={index} style={billContainerStyle}>
@@ -284,18 +287,6 @@ export default function AllPayment() {
                                 <div style={billLabelStyle}>Method Type:</div>
                                 <div style={billValueStyle}>{payment.methodType}</div>
                             </div>
-                            {/* <div style={billItemStyle}>
-                                <div style={billLabelStyle}>Card Number:</div>
-                                <div style={billValueStyle}>{maskCardNumber(payment.cardNumber)}</div>
-                            </div>
-                            <div style={billItemStyle}>
-                                <div style={billLabelStyle}>Date:</div>
-                                <div style={billValueStyle}>{payment.date}</div>
-                            </div>
-                            <div style={billItemStyle}>
-                                <div style={billLabelStyle}>CVC:</div>
-                                <div style={billValueStyle}>{maskCvc()}</div>
-                            </div> */}
                             <div style={billItemStyle}>
                                 <div style={billLabelStyle}>Description:</div>
                                 <div style={billValueStyle}>{payment.description || 'N/A'}</div>
@@ -307,7 +298,37 @@ export default function AllPayment() {
                         </div>
                     ))}
                     <div style={{ textAlign: 'right', fontSize: '20px', fontWeight: 'bold', marginTop: '20px' }}>
-                        Total Doctor Charges: Rs. {totalCharges}
+                        Total Income Of Doctor Charges: Rs. {totalCharges}
+                    </div>
+                </div>
+            </div>
+
+            {/* Financial Statement Print Section */}
+            <div style={{ display: 'none' }}>
+                <div ref={financialRef}>
+                    <h1 style={headerStyle}>Financial Statement</h1>
+                    <p style={dateTimeStyle}>Date: {currentDateTime}</p>
+                    <div style={hospitalDetailsStyle}>
+                        <strong>WELLNESS AYURWEDA HOSPITAL</strong><br />
+                        No: <strong>56/A Weliweriya road, Kirindiwela</strong><br />
+                        Phone: <strong>0777513155</strong>
+                    </div>
+                    <div style={{ marginTop: '30px', padding: '20px', backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
+                        <h2 style={{ textAlign: 'center', fontSize: '24px', marginBottom: '10px' }}>Financial Summary</h2>
+                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                            <thead>
+                                <tr>
+                                    <th style={{ border: '1px solid #dee2e6', padding: '10px', textAlign: 'center' }}>Description</th>
+                                    <th style={{ border: '1px solid #dee2e6', padding: '10px', textAlign: 'center' }}>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style={{ border: '1px solid #dee2e6', padding: '10px', textAlign: 'center' }}>Total Doctor Charges</td>
+                                    <td style={{ border: '1px solid #dee2e6', padding: '10px', textAlign: 'center' }}>Rs. {totalCharges}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

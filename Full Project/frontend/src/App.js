@@ -35,6 +35,8 @@ import Patient from './Components/AddPatient/Patient';
 import Patientdetails from './Components/Patientdetails/Patientdetails';
 import UpdatePatient from './Components/UpdatePatient/UpdatePatient';
 import FoodLogin from "./Components/FoodLogin/FoodLogin";
+import FoodPage from "./Components/FoodPage/food";
+
 
 
 function App() {
@@ -77,6 +79,8 @@ function App() {
           <Route path="/addPatient" element={<Patient />} />
           <Route path="/Patientdetails" element={<Patientdetails />} />
           <Route path="/updatePatient/:id" element={<UpdatePatient />} />
+          <Route path="/food" element={<FoodPage/>} />
+
 
 
         </Routes>

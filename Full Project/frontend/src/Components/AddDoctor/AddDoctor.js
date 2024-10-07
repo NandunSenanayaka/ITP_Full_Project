@@ -53,12 +53,25 @@ function AddDoctor() {
 
     // Phone validation
     if (name === "phone") {
-      const phonePattern = /^\d{10}$/; // Allows only 10-digit numbers
-      if (!phonePattern.test(value)) {
-        setPhoneError("Phone number must be exactly 10 digits."); // Set error message
-      } else {
-        setPhoneError(""); // Clear error message if valid
+      // Allows only digits and limits to 10 characters
+      const phoneDigitsOnly = value.replace(/\D/g, ''); // Remove non-digits
+      if (phoneDigitsOnly.length > 10) {
+        return; // Prevent entering more than 10 digits
       }
+
+      const phonePattern = /^\d{10}$/; // Only 10-digit numbers allowed
+      if (phoneDigitsOnly.length === 10 && !phonePattern.test(phoneDigitsOnly)) {
+        setPhoneError("Phone number must be exactly 10 digits.");
+      } else {
+        setPhoneError(""); // Clear phone error message if valid
+      }
+
+      // Update phone input
+      setInputs((prevState) => ({
+        ...prevState,
+        [name]: phoneDigitsOnly,
+      }));
+      return; // Skip further input handling for phone
     }
 
     // Set input values based on user input

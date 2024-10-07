@@ -200,8 +200,24 @@ export default function AllPayment() {
         marginRight: '10px'
     };
 
+    const buttonStyle1 = {
+        backgroundColor: '#007bff',
+        color: '#ffffff',
+        border: 'none',
+        borderRadius: '15px',
+        padding: '8px 12px',
+        fontSize: '14px',
+        fontWeight: 'bold',
+        cursor: 'pointer',
+        transition: 'background-color 0.3s ease, transform 0.2s ease',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        marginRight: '10px',
+    };
+    
+    
+
     // Calculate total doctor charges
-    const totalCharges = filteredPayments.length * 1500; // Assuming each charge is Rs. 1500
+    const totalCharges = filteredPayments.length * 1500; 
 
     return (
         <div style={pageStyle}>
@@ -210,13 +226,13 @@ export default function AllPayment() {
             <div style={searchContainerStyle}>
                 <input 
                     type="text" 
-                    placeholder="Search..." 
+                    placeholder="Search Payment details..." 
                     value={searchQuery} 
                     onChange={e => setSearchQuery(e.target.value)} 
                     style={searchInputStyle}
                 />
-                <button onClick={handlePrint} style={buttonStyle}>Download Report</button>
-                <button onClick={handleFinancialPrint} style={buttonStyle}> Financial Statement</button> {/* New Button */}
+                <button onClick={handlePrint} style={buttonStyle1}>Download Report</button>
+                <button onClick={handleFinancialPrint} style={buttonStyle1}> Financial Statement</button> 
             </div>
             <div style={hospitalDetailsStyle}>
                 <strong>WELLNESS AYURWEDA HOSPITAL</strong><br />
@@ -296,10 +312,9 @@ export default function AllPayment() {
                                 <div style={billValueStyle}>Rs. 1500</div>
                             </div>
                         </div>
+                        
                     ))}
-                    <div style={{ textAlign: 'right', fontSize: '20px', fontWeight: 'bold', marginTop: '20px' }}>
-                        Total Income Of Doctor Charges: Rs. {totalCharges}
-                    </div>
+              
                 </div>
             </div>
 
@@ -329,9 +344,55 @@ export default function AllPayment() {
                                 </tr>
                             </tbody>
                         </table>
+              
                     </div>
+
                 </div>
+                
             </div>
+                 {/* Footer Section */}
+      <footer className="footer">
+        <div className="footer-content">
+          <img alt="Logo" className="logo-footer" src={Logo} />
+          <div className="quick-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Treatments</a></li>
+              <li><a href="#">Foods</a></li>
+              <li><a href="#">Pharmacy</a></li>
+            </ul>
+          </div>
+          <div className="about">
+            <h4>About</h4>
+            <ul>
+              <li><a href="#">Find a Doctor</a></li>
+              <li><a href="#">Request an Appointment</a></li>
+              <li><a href="#">Find a Location</a></li>
+              <li><a href="#">Get an Opinion</a></li>
+            </ul>
+          </div>
+          <div className="support">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="#">Donate</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="logo-footer-Text">WELLNESS</div>
+        <div className="social-media">
+          <a href="#"><FaInstagram size={24} /></a>
+          <a href="#"><FaLinkedin size={24} /></a>
+          <a href="#"><FaYoutube size={24} /></a>
+          <a href="#"><FaFacebook size={24} /></a>
+        </div>
+      </footer>
+
+      <div className='copy-right'>
+        <p>© 2024. Designed by Susara. All right reserved.</p>
+      </div>
+      {/* END Footer Section */}
         </div>
     );
 }

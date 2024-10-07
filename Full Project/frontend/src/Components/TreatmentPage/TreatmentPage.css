@@ -331,4 +331,13 @@ td:last-child {
     margin-bottom: 5px;
     color: #666;
   }
-  
+
+.languagetitle{
+  margin-left: 23px;
+  color: #000;
+}
+
+.language{
+  margin-left: 10px;
+  color: #000;
+}

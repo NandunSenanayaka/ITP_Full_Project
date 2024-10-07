@@ -71,9 +71,9 @@ const PharmacyPage = () => {
           R V E D A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; H O S P I T
           A L
         </div>
-        <button className="login-btnAd" onClick={() => navigate("/Header")}>
+        {/* <button className="login-btnAd" onClick={() => navigate("/Header")}>
           Log Out
-        </button>
+        </button> */}
       </header>
 
       {/* Navigation Section */}

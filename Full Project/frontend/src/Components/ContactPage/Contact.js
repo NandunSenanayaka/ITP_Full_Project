@@ -32,9 +32,9 @@ const Contact = () => {
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/treatmentpage">Treatments</Link></li>
-          <li><a href="#">Foods</a></li>
+          <li><a href="/food">Foods</a></li>
           <li><a href="/DoctorPage">Find a Doctor</a></li>
-          <li><a href="#">Pharmacy</a></li>
+          <li><a href="/PharmacyPage">Pharmacy</a></li>
           <li><a href="/Contact">Contact</a></li>
         </ul>
       </nav>

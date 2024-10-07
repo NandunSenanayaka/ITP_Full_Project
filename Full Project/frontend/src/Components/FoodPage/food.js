@@ -104,7 +104,7 @@ const Food = () => {
           A Y U R V E D A &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           H O S P I T A L
         </div>
-        <button className="login-btnAd" onClick={() => navigate('/Header')}>Log Out</button>
+        {/* <button className="login-btnAd" onClick={() => navigate('/Header')}>Log Out</button> */}
         </header>
 
       {/* Navigation Section */}
@@ -114,7 +114,7 @@ const Food = () => {
           <li><Link to="/treatmentpage">Treatments</Link></li>
           <li><a href="/food">Foods</a></li>
           <li><a href="/DoctorPage">Find a Doctor</a></li>
-          <li><a href="#">Pharmacy</a></li>
+          <li><a href="/PharmacyPage">Pharmacy</a></li>
           <li><a href="/Contact">Contact</a></li>
           </ul>
       </nav>

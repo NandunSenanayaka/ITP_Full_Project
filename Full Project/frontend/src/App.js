@@ -17,6 +17,8 @@ import HomeNav from "./Components/HomeNav/HomeNav";
 import AdminHome from "./Components/AdminHome/AdminHome";
 import TreatmentLogin from "./Components/TreatmentLogin/TreatmentLogin";
 import Contact from "./Components/ContactPage/Contact";
+import SinhalaTreatmentPage from "./Components/TreatmentPage/SinhalaTreatmentPage"; 
+
 
 import DoctorDetails from "./Components/DoctorDetails/DoctorDetails";
 import AddDoctor from "./Components/AddDoctor/AddDoctor";
@@ -61,6 +63,8 @@ function App() {
           <Route path="/treatmentpage" element={<TreatmentPage />} /> {/* Route to TreatmentPage */}
           <Route path="/TreatmentLogin" element={<TreatmentLogin />} /> {/* Route to TreatmentLogin */}
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/SinhalaTreatmentPage" element={<SinhalaTreatmentPage />} />
+
           {/* Doctor-related routes */}
           <Route path="/DoctorLogin" element={<DoctorLogin/>}></Route>
           <Route path="/addDoctor" element={<AddDoctor/>}></Route>

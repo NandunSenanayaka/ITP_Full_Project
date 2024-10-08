@@ -38,8 +38,8 @@ function AddPayment() {
         }));
       }
     } else if (name === "date") {
-      // Allow mm/yy format, restrict to max length of 5
-      if (/^(0[1-9]|1[0-2])\/(2[3-9]|[0-9]{2})?$/.test(value) || value.length < 5) {
+      // Allow only numbers and /, restrict to max length of 5 (MM/YY)
+      if (/^\d{0,2}(\/\d{0,2})?$/.test(value)) {
         setFormData((prevData) => ({
           ...prevData,
           [name]: value,
@@ -62,19 +62,22 @@ function AddPayment() {
     }
   };
 
+  // More professional date validation
   const validateDate = (date) => {
+    const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/; // Ensure the format MM/YY
+    if (!regex.test(date)) {
+      return false; // Invalid format
+    }
+
     const [month, year] = date.split("/").map(Number);
     const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth() + 1;
+    const currentYear = currentDate.getFullYear() % 100; // Get last two digits of current year
+    const currentMonth = currentDate.getMonth() + 1; // Months are 0-indexed
 
-    if (
-      year < currentYear % 100 || // Ensure the year is not in the past
-      (year === currentYear % 100 && month < currentMonth) || // Ensure the month is not in the past if the year is the same
-      year > 32 // Ensure the year does not exceed 2032 (32 in mm/yy format)
-    ) {
-      return false;
+    if (year < currentYear || (year === currentYear && month < currentMonth)) {
+      return false; // Date is in the past
     }
+
     return true;
   };
 
@@ -82,7 +85,7 @@ function AddPayment() {
     e.preventDefault();
 
     if (!validateDate(formData.date)) {
-      alert("Invalid expiry date. Ensure it's in the format mm/yy and is in the future.");
+      alert("Invalid expiry date. Please ensure the format is MM/YY and the date is in the future.");
       return;
     }
 
@@ -120,7 +123,7 @@ function AddPayment() {
         <div className="logo">
           W E L L N E S S 
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          A Y R V E D A
+          A Y U R V E D A
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           H O S P I T A L
         </div>
@@ -216,7 +219,7 @@ function AddPayment() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="date" className="form-label">Expiry Date (mm/yy)</label>
+          <label htmlFor="date" className="form-label">Expiry Date (MM/YY)</label>
           <input
             type="text"
             className="form-control"
@@ -273,33 +276,28 @@ function AddPayment() {
           <div className="about">
             <h4>About</h4>
             <ul>
-              <li><a href="#">Find a Doctor</a></li>
-              <li><a href="#">Request an Appointment</a></li>
-              <li><a href="#">Find a Location</a></li>
-              <li><a href="#">Get an Opinion</a></li>
+              <li><a href="#">Find Doctors</a></li>
+              <li><a href="#">Our Approach</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Privacy Policy</a></li>
             </ul>
           </div>
-          <div className="support">
-            <h4>Support</h4>
+          <div className="contact-info">
+            <h4>Contact Us</h4>
             <ul>
-              <li><a href="#">Donate</a></li>
-              <li><a href="#">Contact Us</a></li>
+              <li>Email: example@email.com</li>
+              <li>Phone: +1 234 567 890</li>
+              <li>Address: 123 Wellness St.</li>
             </ul>
           </div>
-        </div>
-        <div className="logo-footer-Text">WELLNESS</div>
-        <div className="social-media">
-          <a href="#"><FaInstagram size={24} /></a>
-          <a href="#"><FaLinkedin size={24} /></a>
-          <a href="#"><FaYoutube size={24} /></a>
-          <a href="#"><FaFacebook size={24} /></a>
+          <div className="social-icons">
+            <a href="#"><FaInstagram /></a>
+            <a href="#"><FaLinkedin /></a>
+            <a href="#"><FaYoutube /></a>
+            <a href="#"><FaFacebook /></a>
+          </div>
         </div>
       </footer>
-
-      <div className='copy-right'>
-        <p>© 2024. Designed by Susara. All right reserved.</p>
-      </div>
-      {/* END Footer Section */}
     </div>
   );
 }

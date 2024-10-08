@@ -18,6 +18,44 @@ function NurseDetail({
 }) {
   const navigate = useNavigate();
 
+   // Validation function
+   const isValidInput = () => {
+    if (!/^[a-zA-Z\s]*$/.test(name)) {
+      alert("Name should only contain letters.");
+      return false;
+    }
+    if (!/^\d{0,12}$/.test(nic) || nic.length > 12) {
+      alert("NIC should be a 12-digit number.");
+      return false;
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+    if (!/^\d{0,10}$/.test(phone) || phone.length > 10) {
+      alert("Phone number should be 10 digits.");
+      return false;
+    }
+    if (!/^\d*$/.test(appnumber)) {
+      alert("Appointment number should only allow digits.");
+      return false;
+    }
+    if (!/^[1-9]$|^10$/.test(rnumber)) {
+      alert("Room number should be between 1 to 10.");
+      return false;
+    }
+    if (!/^\d{2}:\d{2}$/.test(time)) {
+      alert("Time should be in HH:MM format.");
+      return false;
+    }
+    if (!/^[a-zA-Z\s]*$/.test(diseases)) {
+      alert("Diseases field should only contain text.");
+      return false;
+    }
+    return true;
+  };
+
   // Delete function handler
   const deleteHandler = async () => {
     try {

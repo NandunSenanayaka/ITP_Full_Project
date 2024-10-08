@@ -238,6 +238,7 @@ function NurseDetails() {
           <button className="search-btn" onClick={handleSearch}>
             Search
           </button>
+          
         </div>
 
         {noResults ? (

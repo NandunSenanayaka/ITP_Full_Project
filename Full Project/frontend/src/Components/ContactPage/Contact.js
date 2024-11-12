@@ -52,7 +52,7 @@ const Contact = () => {
             wellnessayrveda@gmail.com
           </p>
 
-            <button className="whatsapp-btn" onClick={() => window.open('https://wa.me/94778869417?text=Hello%20Wellness%20Ayurveda%20Hospital!', '_blank')}>
+            <button className="whatsapp-btn" onClick={() => window.open('https://wa.me/94771234567?text=Hello%20Wellness%20Ayurveda%20Hospital!', '_blank')}>
                 Send Whatsapp Message
             </button>
         </div>
